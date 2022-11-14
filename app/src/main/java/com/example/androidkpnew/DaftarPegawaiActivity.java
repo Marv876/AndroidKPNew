@@ -97,8 +97,8 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
         });
     }
 
-    public void onTransferPosition(int position) {
-        this.position= position;
-    }
+//    public void onTransferPosition(int position) {
+//        this.position= position;
+//    }
 
 }
