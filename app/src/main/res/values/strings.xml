@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">AndroidKPNEW</string>
+    <string name="app_name">Absios</string>
+    <string-array name="jurusan_array">
+        <item>Admin</item>
+        <item>Bengkel</item>
+        <item>Gudang</item>
+    </string-array>
 </resources>

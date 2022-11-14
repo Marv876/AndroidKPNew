@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/saikyo"
+    android:orientation="vertical"
+    tools:context=".HomeActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/lemonmilklight"
+        android:text="Absios Mobile"
+        android:textAlignment="center"
+        android:textColor="#ffd700"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="483dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/absensi_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#ffd700"
+            android:text="Absensi"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/gaji_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#ffd700"
+            android:text="Gaji"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/anggota_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#ffd700"
+            android:text="Anggota"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="@drawable/wadu"
+        android:fontFamily="@font/lemonmilklight"
+        android:gravity="center"
+        android:text="Selamat Datang di Absios Mobile"
+        android:textColor="#ffd700"
+        android:textSize="20dp" />
+
+
+</LinearLayout>
