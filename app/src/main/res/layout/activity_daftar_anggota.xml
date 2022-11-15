@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DaftarAnggotaActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Daftar Pegawai"
+        android:textSize="28sp"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/namapegawai_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Nama Pegawai"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Role Pegawai"
+        android:textSize="18dp"/>
+
+    <Spinner
+        android:id="@+id/role_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Role Pegawai"
+        android:entries="@array/jurusan_array"
+        />
+
+    <EditText
+        android:id="@+id/norekening_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Nomor Rekening"
+        android:layout_marginTop="5dp" />
+
+    <EditText
+        android:id="@+id/gajipokok_etn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Gaji Pokok"
+        android:inputType="number"
+        android:layout_marginTop="5dp" />
+
+    <EditText
+        android:id="@+id/gajimingguan_etn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Gaji Mingguan"
+        android:inputType="number"
+        android:layout_marginTop="5dp"/>
+
+    <EditText
+        android:id="@+id/gajibulanan_etn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Gaji Bulanan"
+        android:inputType="number"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="daftarkan Pegawai"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/lihatdaftarpegawai_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Lihat daftar pegawai"
+        android:layout_marginLeft="5px"
+        android:layout_marginRight="10px"/>
+
+
+
+
+</LinearLayout>
