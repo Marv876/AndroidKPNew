@@ -44,12 +44,12 @@ public class PegawaiViewAdapter extends RecyclerView.Adapter<PegawaiViewAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Employee pegawai = list.get(position);
-        holder.namaPegawai.setText(pegawai.getNamaPegawai());
-        holder.rolePegawai.setText(pegawai.getRolePegawai());
-        holder.norekPegawai.setText(pegawai.getnomorRekening());
-        holder.gapoPegawai.setText(pegawai.getGajiPokok());
-        holder.gaminPegawai.setText(pegawai.getGajiMingguan());
-        holder.gabulPegawai.setText(pegawai.getGajiBulanan());
+        holder.namaPegawai.setText("Nama : " + pegawai.getNamaPegawai());
+        holder.rolePegawai.setText("Role : " +pegawai.getRolePegawai());
+        holder.norekPegawai.setText("Nomor Rekening : " +pegawai.getnomorRekening());
+        holder.gapoPegawai.setText("Gaji Pokok : " +pegawai.getGajiPokok());
+        holder.gaminPegawai.setText("Gaji Mingguan : " +pegawai.getGajiMingguan());
+        holder.gabulPegawai.setText("Gaji Bulanan : " +pegawai.getGajiBulanan());
 
 
     }

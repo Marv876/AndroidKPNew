@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -58,47 +60,31 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Employee pegawai = dataSnapshot.getValue(Employee.class);
+                    pegawai.setKey(dataSnapshot.getKey());
                     list.add(pegawai);
 
                 }
                 pgwAdapter.notifyDataSetChanged();
-
+                recyclerView.setAdapter(pgwAdapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(error.getMessage(), "onCancelled: ", error.toException());
+//                Log.e(error.getMessage(), "onCancelled: ", error.toException());
             }
         });
 
-        btnUbahDataPGW.setOnClickListener(view -> {
-            final ArrayList<Employee> emp = new ArrayList<>();
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Employee");
-            ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        emp.add(snapshot.getValue(Employee.class));
-                    }
-
-                    int itemPosition = this.getLayoutPosition();
-
-                    Intent intent = new Intent(this, UbahAnggotaActivity.class);
-                    intent.putExtra("position", itemPosition + "");
-                    intent.putExtra("restaurants", Parcela.wrap(emp));
-
-                    this.startActivity(intent);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                }
-            });
-        });
+//        btnUbahDataPGW.setOnClickListener(view -> {
+//            Intent myIntent = new Intent(DaftarPegawaiActivity.this, UbahDataPegawai.class);
+//            myIntent.putExtra("EDIT", Employee.class);
+//            try {
+//                DaftarPegawaiActivity.this.startActivity(myIntent);
+//
+//            } catch (ActivityNotFoundException e) {
+//                // Define what your app should do if no activity can handle the intent.
+//                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
-
-//    public void onTransferPosition(int position) {
-//        this.position= position;
-//    }
 
 }

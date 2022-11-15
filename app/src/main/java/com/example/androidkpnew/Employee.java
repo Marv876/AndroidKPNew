@@ -2,7 +2,12 @@ package com.example.androidkpnew;
 
 //import kotlin.Unit;
 
+import com.google.firebase.database.Exclude;
+
 public class Employee {
+
+    @Exclude
+    private String key;
     private String namaPegawai;
     private String rolePegawai;
     private int nomorRekening;
@@ -19,6 +24,14 @@ public class Employee {
         this.gajiPokok = gajiPokok;
         this.gajiMingguan = gajiMingguan;
         this.gajiBulanan = gajiBulanan;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getNamaPegawai() {
