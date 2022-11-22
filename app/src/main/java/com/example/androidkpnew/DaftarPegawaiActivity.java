@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,11 +38,12 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     PegawaiViewAdapter pgwAdapter;
     ArrayList<Employee> list;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar_pegawai);
+        ArrayAdapter<String> listadapter = new ArrayAdapter<String>(DaftarPegawaiActivity.this,
+                R.layout.activity_ubah_data_pegawai);
 
         final Button btnUbahDataPGW = findViewById(R.id.ubahDataPegawai_btn);
         final Button btnHistoryPGW = findViewById(R.id.historyPegawai_btn);
@@ -74,17 +76,16 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
             }
         });
 
-//        btnUbahDataPGW.setOnClickListener(view -> {
-//            Intent myIntent = new Intent(DaftarPegawaiActivity.this, UbahDataPegawai.class);
-//            myIntent.putExtra("EDIT", Employee.class);
-//            try {
-//                DaftarPegawaiActivity.this.startActivity(myIntent);
-//
-//            } catch (ActivityNotFoundException e) {
-//                // Define what your app should do if no activity can handle the intent.
-//                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        });
+        btnUbahDataPGW.setOnClickListener(view -> {
+            Intent myIntent = new Intent(DaftarPegawaiActivity.this, UbahDataPegawai.class);
+            try {
+                DaftarPegawaiActivity.this.startActivity(myIntent);
+
+            } catch (ActivityNotFoundException e) {
+                // Define what your app should do if no activity can handle the intent.
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 }
