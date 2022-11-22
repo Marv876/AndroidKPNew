@@ -24,18 +24,18 @@ public class UbahDataPegawai extends AppCompatActivity {
         final EditText etGajipokok = findViewById(R.id.gajipokok_etn);
         final EditText etGajimingguan = findViewById(R.id.gajimingguan_etn);
         final EditText etGajibulanan = findViewById(R.id.gajibulanan_etn);
-        final Button btnUbahDataPegawai = findViewById(R.id.ubahDataPegawai_btn);
+        final Button btnUbahDataPegawai = findViewById(R.id.ubahData_btn);
 
         DAOEmployee konekDB = new DAOEmployee();
-        Employee emp = (Employee)getIntent().getSerializableExtra("EDIT");
-        if(emp != null){
+        Employee emp_edit = (Employee)getIntent().getSerializableExtra("EDIT");
+        if(emp_edit != null){
             btnUbahDataPegawai.setText("UPDATE");
-            etNamapegawai.setText(emp.getNamaPegawai());
+            etNamapegawai.setText(emp_edit.getNamaPegawai());
             spinnerRolepegawai.getSelectedItem();
-            etNorekening.setText(emp.getnomorRekening());
-            etGajipokok.setText(emp.getGajiPokok());
-            etGajimingguan.setText(emp.getGajiMingguan());
-            etGajibulanan.setText(emp.getGajiBulanan());
+            etNorekening.setText((Integer)emp_edit.getnomorRekening());
+//            etGajipokok.setText((Integer)emp_edit.getGajiPokok());
+//            etGajimingguan.setText((Integer)emp_edit.getGajiMingguan());
+//            etGajibulanan.setText((Integer)emp_edit.getGajiBulanan());
         }
         else{
             btnUbahDataPegawai.setText("SUBMIT");
@@ -49,13 +49,12 @@ public class UbahDataPegawai extends AppCompatActivity {
             hashmap.put("gapo", Integer.parseInt(etGajipokok.getText().toString()));
             hashmap.put("gamin", Integer.parseInt(etGajimingguan.getText().toString()));
             hashmap.put("gabul", Integer.parseInt(etGajibulanan.getText().toString()));
-            konekDB.update(emp.getKey(), hashmap).addOnSuccessListener(suc -> {
+            konekDB.update(emp_edit.getKey(), hashmap).addOnSuccessListener(suc -> {
                 Toast.makeText(this, "Berhasil Update data Pegawai", Toast.LENGTH_SHORT).show();
                 finish();
             }).addOnFailureListener(er -> {
                 Toast.makeText(this, ""+ er.getMessage(), Toast.LENGTH_SHORT).show();
             });
-
         });
 
     }
