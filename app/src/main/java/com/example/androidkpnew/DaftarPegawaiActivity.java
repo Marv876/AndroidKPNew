@@ -43,8 +43,8 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar_pegawai);
 
-        final Button btnUbahDataPGW = findViewById(R.id.ubahDataPegawai_btn);
-        final Button btnHistoryPGW = findViewById(R.id.historyPegawai_btn);
+//        final Button btnUbahDataPGW = findViewById(R.id.ubahDataPegawai_btn);
+//        final Button btnHistoryPGW = findViewById(R.id.historyPegawai_btn);
 
         recyclerView = findViewById(R.id.data_list);
         databaseReference = FirebaseDatabase.getInstance().getReference("Employee");
@@ -62,7 +62,7 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
                     Employee pegawai = dataSnapshot.getValue(Employee.class);
                     pegawai.setKey(dataSnapshot.getKey());
                     list.add(pegawai);
-
+//                    key = dataSnapshot.getKey();
                 }
                 pgwAdapter.notifyDataSetChanged();
                 recyclerView.setAdapter(pgwAdapter);
@@ -73,6 +73,7 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
 //                Log.e(error.getMessage(), "onCancelled: ", error.toException());
             }
         });
+
 
 //        btnUbahDataPGW.setOnClickListener(view -> {
 //            Intent myIntent = new Intent(DaftarPegawaiActivity.this, UbahDataPegawai.class);
@@ -86,5 +87,6 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
 
 }

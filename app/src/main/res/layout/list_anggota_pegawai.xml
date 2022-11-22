@@ -23,7 +23,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp">
 
             <TextView
                 android:id="@+id/list_nama_tv"
@@ -72,22 +74,32 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp">
 
-            <Button
-                android:id="@+id/ubahDataPegawai_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:text="Ubah" />
+<!--            <Button-->
+<!--                android:id="@+id/ubahDataPegawai_btn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:text="Ubah" />-->
 
-            <Button
-                android:id="@+id/historyPegawai_btn"
-                android:layout_width="wrap_content"
+<!--            <Button-->
+<!--                android:id="@+id/historyPegawai_btn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:text="History" />-->
+
+            <TextView
+                android:id="@+id/option_txt"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="History" />
+                android:text="&#8942;"
+                android:textSize="20dp"
+                android:layout_gravity="right"/>
 
         </LinearLayout>
 
