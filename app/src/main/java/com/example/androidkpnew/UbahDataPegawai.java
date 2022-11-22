@@ -32,10 +32,10 @@ public class UbahDataPegawai extends AppCompatActivity {
             btnUbahDataPegawai.setText("UPDATE");
             etNamapegawai.setText(emp_edit.getNamaPegawai());
             spinnerRolepegawai.getSelectedItem();
-            etNorekening.setText((Integer)emp_edit.getnomorRekening());
-//            etGajipokok.setText((Integer)emp_edit.getGajiPokok());
-//            etGajimingguan.setText((Integer)emp_edit.getGajiMingguan());
-//            etGajibulanan.setText((Integer)emp_edit.getGajiBulanan());
+            etNorekening.setText(String.valueOf(emp_edit.getnomorRekening()));
+            etGajipokok.setText(String.valueOf(emp_edit.getGajiPokok()));
+            etGajimingguan.setText(String.valueOf(emp_edit.getGajiMingguan()));
+            etGajibulanan.setText(String.valueOf(emp_edit.getGajiBulanan()));
         }
         else{
             btnUbahDataPegawai.setText("SUBMIT");
@@ -43,12 +43,12 @@ public class UbahDataPegawai extends AppCompatActivity {
 
         btnUbahDataPegawai.setOnClickListener(view -> {
             HashMap<String, Object> hashmap = new HashMap<>();
-            hashmap.put("name", etNamapegawai.getText().toString());
-            hashmap.put("role", spinnerRolepegawai.getSelectedItem());
-            hashmap.put("norek", Integer.parseInt(etNorekening.getText().toString()));
-            hashmap.put("gapo", Integer.parseInt(etGajipokok.getText().toString()));
-            hashmap.put("gamin", Integer.parseInt(etGajimingguan.getText().toString()));
-            hashmap.put("gabul", Integer.parseInt(etGajibulanan.getText().toString()));
+            hashmap.put("namaPegawai", etNamapegawai.getText().toString());
+            hashmap.put("rolePegawai", spinnerRolepegawai.getSelectedItem());
+            hashmap.put("nomorRekening", Integer.parseInt(etNorekening.getText().toString()));
+            hashmap.put("gajiPokok", Integer.parseInt(etGajipokok.getText().toString()));
+            hashmap.put("gajiMingguan", Integer.parseInt(etGajimingguan.getText().toString()));
+            hashmap.put("gajiBulanan", Integer.parseInt(etGajibulanan.getText().toString()));
             konekDB.update(emp_edit.getKey(), hashmap).addOnSuccessListener(suc -> {
                 Toast.makeText(this, "Berhasil Update data Pegawai", Toast.LENGTH_SHORT).show();
                 finish();
