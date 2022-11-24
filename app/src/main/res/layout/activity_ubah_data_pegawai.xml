@@ -4,15 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/coba"
     tools:context=".DaftarAnggotaActivity"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="134dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Daftar Pegawai"
-        android:textSize="28sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="28sp" />
 
     <EditText
         android:id="@+id/namapegawai_et"
@@ -21,11 +28,14 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Nama Pegawai"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:layout_marginTop="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:text="Role Pegawai"
         android:textSize="18dp"/>
 
@@ -34,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="Role Pegawai"
+        android:outlineAmbientShadowColor="@color/white"
         android:entries="@array/jurusan_array"
         />
 
@@ -44,6 +55,8 @@
         android:ems="10"
         android:inputType="number"
         android:hint="Nomor Rekening"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:layout_marginTop="5dp" />
 
     <EditText
@@ -52,6 +65,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Gaji Pokok"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:inputType="number"
         android:layout_marginTop="5dp" />
 
@@ -61,6 +76,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Gaji Mingguan"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:inputType="number"
         android:layout_marginTop="5dp"/>
 
@@ -70,6 +87,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Gaji Bulanan"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:inputType="number"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"/>
@@ -78,8 +97,10 @@
         android:id="@+id/ubahData_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ubah Data Pegawai"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="#ffd700"
+        android:backgroundTint="@color/black"
+        android:text="Ubah Data Pegawai" />
 
 
 

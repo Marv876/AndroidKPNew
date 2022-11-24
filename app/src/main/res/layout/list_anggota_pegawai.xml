@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:text="Nama Anggota" />
 
             <TextView
@@ -39,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:text="divisi" />
 
             <TextView
@@ -46,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:text="Nomor Rekening" />
 
             <TextView
@@ -53,6 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:text="Gaji Pokok" />
 
             <TextView
@@ -60,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:text="Gaji Mingguan" />
 
             <TextView
@@ -67,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:text="Gaji Bulanan" />
         </LinearLayout>
 
@@ -99,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:text="&#8942;"
                 android:textSize="20dp"
+                android:textColor="@color/black"
                 android:layout_gravity="right"/>
 
         </LinearLayout>

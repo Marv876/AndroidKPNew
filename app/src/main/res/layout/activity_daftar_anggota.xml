@@ -5,13 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DaftarAnggotaActivity"
+    android:background="@drawable/coba"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="140dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Daftar Pegawai"
         android:textSize="28sp"
+        android:textColor="@color/black"
         android:textAlignment="center"/>
 
     <EditText
@@ -19,14 +26,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:inputType="textPersonName"
         android:hint="Nama Pegawai"
+
         android:layout_marginTop="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Role Pegawai"
+        android:textColor="@color/black"
         android:textSize="18dp"/>
 
     <Spinner
@@ -42,6 +53,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:inputType="number"
         android:hint="Nomor Rekening"
         android:layout_marginTop="5dp" />
@@ -52,6 +65,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Gaji Pokok"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:inputType="number"
         android:layout_marginTop="5dp" />
 
@@ -61,6 +76,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Gaji Mingguan"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:inputType="number"
         android:layout_marginTop="5dp"/>
 
@@ -71,26 +88,29 @@
         android:ems="10"
         android:hint="Gaji Bulanan"
         android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"/>
 
     <Button
         android:id="@+id/submit_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="247dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/black"
         android:text="daftarkan Pegawai"
-        android:layout_gravity="center"/>
+        android:textColor="#ffd700" />
 
     <Button
         android:id="@+id/lihatdaftarpegawai_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+
+        android:backgroundTint="@color/black"
         android:text="Lihat daftar pegawai"
-        android:layout_marginLeft="5px"
-        android:layout_marginRight="10px"/>
-
-
+        android:textColor="#ffd700" />
 
 
 </LinearLayout>
