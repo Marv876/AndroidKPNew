@@ -17,13 +17,13 @@
         android:layout_marginBottom="15dp"
         android:textSize="30dp"/>
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/cariData_src"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:queryHint="cari nama pegawai" >
 
-    </SearchView>
+    </androidx.appcompat.widget.SearchView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/data_list"
