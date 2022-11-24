@@ -32,10 +32,11 @@ public class UbahDataPegawai extends AppCompatActivity {
             btnUbahDataPegawai.setText("UPDATE");
             etNamapegawai.setText(emp_edit.getNamaPegawai());
             spinnerRolepegawai.getSelectedItem();
-            etNorekening.setText((Integer)emp_edit.getnomorRekening());
-//            etGajipokok.setText((Integer)emp_edit.getGajiPokok());
-//            etGajimingguan.setText((Integer)emp_edit.getGajiMingguan());
-//            etGajibulanan.setText((Integer)emp_edit.getGajiBulanan());
+
+            etNorekening.setText(String.valueOf(emp_edit.getnomorRekening()));
+            etGajipokok.setText(String.valueOf(emp_edit.getGajiPokok()));
+            etGajimingguan.setText(String.valueOf(emp_edit.getGajiMingguan()));
+            etGajibulanan.setText(String.valueOf(emp_edit.getGajiBulanan()));
         }
         else{
             btnUbahDataPegawai.setText("SUBMIT");
