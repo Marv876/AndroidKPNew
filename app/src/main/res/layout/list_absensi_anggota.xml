@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="159dp"
+            android:layout_height="69dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/list_nama_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Anggota"
+                android:textSize="16dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/list_role_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Divisi"
+                android:textSize="16dp"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkBox_HalfDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:text="1/2 Hari"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkBox_FullDay"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Full"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

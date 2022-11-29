@@ -14,11 +14,11 @@ class HomeActivity : AppCompatActivity() {
         var btnGaji : Button = findViewById(R.id.gaji_btn)
         var btnAnggota : Button = findViewById(R.id.anggota_btn)
 
-//        btnAbsensi.setOnClickListener{
-//            val intent = Intent(this, AbsensiActivity::class.java)
-//            startActivity(intent)
-//        }
-//
+        btnAbsensi.setOnClickListener{
+            val intent = Intent(this, AbsensiActivity::class.java)
+            startActivity(intent)
+        }
+
 //        btnGaji.setOnClickListener{
 //            val intent = Intent(this, GajiActivity::class.java)
 //            startActivity(intent)

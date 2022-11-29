@@ -75,17 +75,7 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
         });
 
 
-//        btnUbahDataPGW.setOnClickListener(view -> {
-//            Intent myIntent = new Intent(DaftarPegawaiActivity.this, UbahDataPegawai.class);
-//            myIntent.putExtra("EDIT", Employee.class);
-//            try {
-//                DaftarPegawaiActivity.this.startActivity(myIntent);
-//
-//            } catch (ActivityNotFoundException e) {
-//                // Define what your app should do if no activity can handle the intent.
-//                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        });
+
     }
 
 
