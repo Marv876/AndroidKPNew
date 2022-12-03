@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.androidkpnew.databinding.ActivityMainBinding;
+//import com.example.androidkpnew.databinding.ActivityMainBinding;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,7 +53,7 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         setContentView(R.layout.activity_absensi);
 
         recyclerView = findViewById(R.id.data_absensi);
-        final TextView tanggalTxt = findViewById(R.id.tanggal_txt);
+
         final Button kalender = findViewById(R.id.calendar_btn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Employee");
         recyclerView.setHasFixedSize(true);
@@ -93,10 +93,6 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
             }
         });
 
-        if(sdhPilihTgl == true){
-            tanggalTxt.setText(""+tglSekarang);
-        }
-
     }
 
 //    public void onCheckboxClicked_ForAll(View view) {
@@ -121,13 +117,16 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker view, int tahun, int bulan, int hari) {
+        final TextView tanggalnya = findViewById(R.id.tanggal_txt);
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR, tahun);
         c.set(Calendar.MONTH, bulan);
         c.set(Calendar.DAY_OF_MONTH, hari);
         tglSekarang = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         sdhPilihTgl = true;
-
+        if(sdhPilihTgl == true){
+            tanggalnya.setText(tglSekarang);
+        }
         Log.d("OUTPUT", "Tanggal sekarang : "+tglSekarang);
         Log.d("Tanggal Sudah dipilih", "Boolean : "+sdhPilihTgl);
     }
@@ -157,24 +156,24 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
                 Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
             });
         }else{
-//            for (int i = 0; i <= abs.size(); i++){
-//                if(tglSekarang == abs.get(i).getTanggal()){
-//                    Log.d("Output dapat tanggal", " : "+abs.get(i).getTanggal());
-//                    HashMap<String, Object> hashmap = new HashMap<>();
-//                    hashmap.put("tanggal", tglSekarang);
-//                    hashmap.put("namaPegawai", getNama);
-//                    hashmap.put("rolePegawai", getRole);
-//                    hashmap.put("nomorRekening", getNorek);
-//                    hashmap.put("halfDay", getHalf);
-//                    hashmap.put("fullDay", getFull);
-//                    konekDB.update(abs.get(i).getKey(), hashmap).addOnSuccessListener(suc -> {
-//                        Toast.makeText(this, "Berhasil Update Absensi!", Toast.LENGTH_SHORT).show();
-//                        finish();
-//                    }).addOnFailureListener(er -> {
-//                        Toast.makeText(this, ""+ er.getMessage(), Toast.LENGTH_SHORT).show();
-//                    });
-//                }
-//                else{
+            for (int i = 0; i <= abs.size(); i++){
+                if(tglSekarang == abs.get(i).getTanggal()){
+                    Log.d("Output dapat tanggal", " : "+abs.get(i).getTanggal());
+                    HashMap<String, Object> hashmap = new HashMap<>();
+                    hashmap.put("tanggal", tglSekarang);
+                    hashmap.put("namaPegawai", getNama);
+                    hashmap.put("rolePegawai", getRole);
+                    hashmap.put("nomorRekening", getNorek);
+                    hashmap.put("halfDay", getHalf);
+                    hashmap.put("fullDay", getFull);
+                    konekDB.update(abs.get(i).getKey(), hashmap).addOnSuccessListener(suc -> {
+                        Toast.makeText(this, "Berhasil Update Absensi!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }).addOnFailureListener(er -> {
+                        Toast.makeText(this, ""+ er.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+                else{
                     Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);
                     abs.add(new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull));
                     konekDB.add(absBaru).addOnSuccessListener(suc -> {
@@ -182,8 +181,8 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
                     }).addOnFailureListener(er -> {
                         Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
                     });
-//                }
-//            }
+                }
+            }
         }
 
 

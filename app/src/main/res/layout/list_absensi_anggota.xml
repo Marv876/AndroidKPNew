@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nama Anggota"
                 android:textSize="16dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/list_role_tv"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Divisi"
                 android:textSize="16dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/list_norek_tv"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="norek"
                 android:textSize="16dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
