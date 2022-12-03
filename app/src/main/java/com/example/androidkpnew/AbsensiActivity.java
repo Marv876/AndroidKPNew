@@ -51,9 +51,7 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_absensi);
-
         recyclerView = findViewById(R.id.data_absensi);
-
         final Button kalender = findViewById(R.id.calendar_btn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Employee");
         recyclerView.setHasFixedSize(true);
@@ -83,8 +81,6 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
                 Log.e(error.getMessage(), "onCancelled: ", error.toException());
             }
         });
-
-
         kalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +113,7 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker view, int tahun, int bulan, int hari) {
+        final Button kalender = findViewById(R.id.calendar_btn);
         final TextView tanggalnya = findViewById(R.id.tanggal_txt);
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR, tahun);
@@ -126,6 +123,7 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         sdhPilihTgl = true;
         if(sdhPilihTgl == true){
             tanggalnya.setText(tglSekarang);
+            kalender.setPadding(-10000,0,0,0);
         }
         Log.d("OUTPUT", "Tanggal sekarang : "+tglSekarang);
         Log.d("Tanggal Sudah dipilih", "Boolean : "+sdhPilihTgl);
