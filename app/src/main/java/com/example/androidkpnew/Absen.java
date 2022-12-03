@@ -7,19 +7,19 @@ public class Absen {
     @Exclude
     private String key;
     private String tanggal;
-    private String nama;
-    private String role;
-    private int norek;
+    private String namaPegawai;
+    private String rolePegawai;
+    private int nomorRekening;
     private String halfDay;
     private String fullDay;
 
     public Absen(){}
 
-    public Absen(String tanggal, String nama, String role, int norek, String halfDay, String fullDay) {
+    public Absen(String tanggal, String namaPegawai, String rolePegawai, int nomorRekening, String halfDay, String fullDay) {
         this.tanggal = tanggal;
-        this.nama = nama;
-        this.role = role;
-        this.norek = norek;
+        this.namaPegawai = namaPegawai;
+        this.rolePegawai = rolePegawai;
+        this.nomorRekening = nomorRekening;
         this.halfDay = halfDay;
         this.fullDay = fullDay;
     }
@@ -40,30 +40,29 @@ public class Absen {
         this.tanggal = tanggal;
     }
 
-    public String getNama() {
-        return nama;
+    public String getnamaPegawai() {
+        return namaPegawai;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setnamaPegawai(String namaPegawai) {
+        this.namaPegawai = namaPegawai;
     }
 
-    public String getRole() {
-        return role;
+    public String getrolePegawai() {
+        return rolePegawai;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setrolePegawai(String rolePegawai) {
+        this.rolePegawai = rolePegawai;
     }
 
-    public int getNorek() {
-        return norek;
+    public int getnomorRekening() {
+        return nomorRekening;
     }
 
-    public void setNorek(int norek) {
-        this.norek = norek;
+    public void setnomorRekening(int nomorRekening) {
+        this.nomorRekening = nomorRekening;
     }
-
 
     public String  gethalfDay() {
         return halfDay;
