@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.androidkpnew.databinding.ActivityMainBinding;
@@ -25,18 +27,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
-public class AbsensiActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AbsensiActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, CallDataAdapterAbsensi {
 
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     AbsensiViewAdapter absAdapter;
     ArrayList<Employee> list;
     ArrayList<Absen> abs;
+    String tglSekarang;
+    Boolean sdhPilihTgl = false;
+    String getNama, getRole, getHalf, getFull;
+    int getNorek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +53,14 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         setContentView(R.layout.activity_absensi);
 
         recyclerView = findViewById(R.id.data_absensi);
+        final TextView tanggalTxt = findViewById(R.id.tanggal_txt);
         final Button submitBtn = findViewById(R.id.submitAbsen_btn);
         final Button kalender = findViewById(R.id.calendar_btn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Employee");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        absAdapter = new AbsensiViewAdapter(this, list, abs);
+        absAdapter = new AbsensiViewAdapter(this, list, abs, this);
         recyclerView.setAdapter(absAdapter);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -60,7 +70,9 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
                     Employee pegawai = dataSnapshot.getValue(Employee.class);
                     Absen absen = dataSnapshot.getValue(Absen.class);
                     pegawai.setKey(dataSnapshot.getKey());
+//                    absen.setKey(dataSnapshot.getKey());
                     list.add(pegawai);
+//                    abs.add(absen);
 //                    key = dataSnapshot.getKey();
                 }
                 absAdapter.notifyDataSetChanged();
@@ -83,13 +95,27 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         });
 
         DAOAbsen konekDB = new DAOAbsen();
-        submitBtn.setOnClickListener(v -> {
-            Absen abs = new Absen();
-            konekDB.add(abs).addOnSuccessListener(suc -> {
-                Toast.makeText(this,"Absen telah tercatat!", Toast.LENGTH_LONG).show();
+        if(sdhPilihTgl == true){tanggalTxt.setText(""+tglSekarang); Log.d("txt tanggal nya", tanggalTxt.toString());}
+
+        submitBtn.setOnClickListener(view -> {
+            Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);
+            konekDB.add(absBaru).addOnSuccessListener(suc -> {
+                Toast.makeText(this,"Absen Telah diCatat!", Toast.LENGTH_LONG).show();
             }).addOnFailureListener(er -> {
                 Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
             });
+
+//            if(!abs.isEmpty()){
+//                HashMap<String, Object> hashmap = new HashMap<>();
+//                hashmap.put("tanggal", kalender.getText().toString());
+////                hashmap.put("namaPegawai", abs.set);
+//                konekDB.update(abs.getKey(), hashmap).addOnSuccessListener(suc -> {
+//                    Toast.makeText(this, "Berhasil Update Absensi", Toast.LENGTH_SHORT).show();
+//                    finish();
+//                }).addOnFailureListener(er -> {
+//                    Toast.makeText(this, ""+ er.getMessage(), Toast.LENGTH_SHORT).show();
+//                });
+//            }
         });
 
 
@@ -121,9 +147,25 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         c.set(Calendar.YEAR, tahun);
         c.set(Calendar.MONTH, bulan);
         c.set(Calendar.DAY_OF_MONTH, hari);
-        String tglSekarang = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        tglSekarang = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        sdhPilihTgl = true;
 
         Log.d("OUTPUT", "Tanggal sekarang : "+tglSekarang);
+        Log.d("Tanggal Sudah dipilih", "Boolean : "+sdhPilihTgl);
+    }
+
+    @Override
+    public void addToList(String namaPegawai, String rolePegawai, int norekening, String halfDay, String fullDay) {
+        Log.d("output nama", "nama : "+namaPegawai);
+        Log.d("output role", "role : "+rolePegawai);
+        Log.d("output norek", "norek : "+norekening);
+        Log.d("output halfday", "halfday : "+halfDay);
+        Log.d("output fullday", "fullday : "+fullDay);
+        getNama = namaPegawai;
+        getRole = rolePegawai;
+        getNorek = norekening;
+        getHalf = halfDay;
+        getFull = fullDay;
     }
 
 }

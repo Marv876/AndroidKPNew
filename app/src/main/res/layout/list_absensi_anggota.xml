@@ -34,13 +34,21 @@
                 android:textSize="16dp"
                 android:textColor="@color/white" />
 
+            <TextView
+                android:id="@+id/list_norek_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="norek"
+                android:textSize="16dp"
+                android:textColor="@color/white" />
+
         </LinearLayout>
 
         <CheckBox
             android:id="@+id/checkBox_HalfDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="50dp"
             android:text="1/2 Hari"
             android:textStyle="bold" />
@@ -49,7 +57,7 @@
             android:id="@+id/checkBox_FullDay"
             android:layout_width="78dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:text="Full"
             android:textStyle="bold" />
