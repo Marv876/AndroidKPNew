@@ -10,18 +10,18 @@ public class Absen {
     private String nama;
     private String role;
     private int norek;
-    private String chkBox_HalfDay;
-    private String chkBox_FullDay;
+    private String halfDay;
+    private String fullDay;
 
     public Absen(){}
 
-    public Absen(String tanggal, String nama, String role, int norek, String chkBox_HalfDay, String chkBox_FullDay) {
+    public Absen(String tanggal, String nama, String role, int norek, String halfDay, String fullDay) {
         this.tanggal = tanggal;
         this.nama = nama;
         this.role = role;
         this.norek = norek;
-        this.chkBox_HalfDay = chkBox_HalfDay;
-        this.chkBox_FullDay = chkBox_FullDay;
+        this.halfDay = halfDay;
+        this.fullDay = fullDay;
     }
 
     public String getKey() {
@@ -65,19 +65,19 @@ public class Absen {
     }
 
 
-    public String  getChkBox_HalfDay() {
-        return chkBox_HalfDay;
+    public String  gethalfDay() {
+        return halfDay;
     }
 
-    public void setChkBox_HalfDay(String chkBox_HalfDay) {
-        this.chkBox_HalfDay = chkBox_HalfDay;
+    public void serhalfDay(String halfDay) {
+        this.halfDay = halfDay;
     }
 
-    public String getChkBox_FullDay() {
-        return chkBox_FullDay;
+    public String getfullDay() {
+        return fullDay;
     }
 
-    public void setChkBox_FullDay(String chkBox_FullDay) {
-        this.chkBox_FullDay = chkBox_FullDay;
+    public void setfullDay(String chkBox_FullDay) {
+        this.fullDay = fullDay;
     }
 }
