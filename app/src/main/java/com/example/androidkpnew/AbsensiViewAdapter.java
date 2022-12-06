@@ -84,7 +84,7 @@ public class AbsensiViewAdapter extends RecyclerView.Adapter<AbsensiViewAdapter.
                     masukHalf = "1";
                     Log.d("OUTPUT HalfDay", "checkbox HalfDay true dengan posisi nomor "+holder.getAdapterPosition()+" hasil : "+holder.halfDay.getText()+" "+getNama);
 
-                    listenerAbsensi.addToList(getNama, getRole, getNoRek, masukFull, masukHalf);
+                    listenerAbsensi.addToList(getNama, getRole, getNoRek, masukHalf, masukFull);
                     masukHalf = "0";
                     masukFull = "0";
                 }else{
@@ -111,7 +111,7 @@ public class AbsensiViewAdapter extends RecyclerView.Adapter<AbsensiViewAdapter.
                     holder.fullDay.setChecked(true);
                     Log.d("OUTPUT FullDay", "checkbox FullDay true dengan posisi nomor "+holder.getAdapterPosition()+" hasil : "+holder.fullDay.getText()+" "+getNama);
 
-                    listenerAbsensi.addToList(getNama, getRole, getNoRek, masukFull, masukHalf);
+                    listenerAbsensi.addToList(getNama, getRole, getNoRek, masukHalf, masukFull);
                     masukHalf = "0";
                     masukFull = "0";
                 }else{

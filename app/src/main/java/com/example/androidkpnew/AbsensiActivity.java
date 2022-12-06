@@ -39,6 +39,7 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
 
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
+    DatabaseReference databaseReferenceAbsensi;
     AbsensiViewAdapter absAdapter;
     ArrayList<Employee> list;
     ArrayList<Absen> abs = new ArrayList<>();
@@ -54,12 +55,13 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         recyclerView = findViewById(R.id.data_absensi);
         final Button kalender = findViewById(R.id.calendar_btn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Employee");
+        databaseReferenceAbsensi = FirebaseDatabase.getInstance().getReference("Absen");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
         absAdapter = new AbsensiViewAdapter(this, list, abs, this);
         recyclerView.setAdapter(absAdapter);
-
+        kalender.setPadding(0,0,18,0);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -81,6 +83,24 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
                 Log.e(error.getMessage(), "onCancelled: ", error.toException());
             }
         });
+
+        databaseReferenceAbsensi.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Absen absen = dataSnapshot.getValue(Absen.class);
+                    absen.setKey(dataSnapshot.getKey());
+                    abs.add(absen);
+//                    key = dataSnapshot.getKey();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(error.getMessage(), "onCancelled absensi error : ", error.toException());
+            }
+        });
+
         kalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,7 +143,6 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         if(sdhPilihTgl == true){
             tanggalnya.setText(tglSekarang);
         }
-        Log.d("OUTPUT", "Tanggal sekarang : "+tglSekarang);
         Log.d("Tanggal Sudah dipilih", "Boolean : "+sdhPilihTgl);
     }
 
@@ -142,42 +161,48 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
 
         DAOAbsen konekDB = new DAOAbsen();
         Log.d("array", "total isi array: "+abs.size());
+//        Log.d("Output key all", " : "+abs.isEmpty());
         if (abs.isEmpty()){
             Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);
-            Log.d("Insert absen tanggal", ""+absBaru.getTanggal());
             abs.add(new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull));
             konekDB.add(absBaru).addOnSuccessListener(suc -> {
                 Toast.makeText(this,"Absen Telah diCatat!", Toast.LENGTH_LONG).show();
             }).addOnFailureListener(er -> {
                 Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
             });
+            Log.d("array", "total isi array: "+abs.size());
         }else{
+            Log.d("array", "total isi array: "+abs.size());
             for (int i = 0; i <= abs.size(); i++){
-                if(tglSekarang == abs.get(i).getTanggal()){
-                    Log.d("Output dapat tanggal", " : "+abs.get(i).getTanggal());
-                    HashMap<String, Object> hashmap = new HashMap<>();
-                    hashmap.put("tanggal", tglSekarang);
-                    hashmap.put("namaPegawai", getNama);
-                    hashmap.put("rolePegawai", getRole);
-                    hashmap.put("nomorRekening", getNorek);
-                    hashmap.put("halfDay", getHalf);
-                    hashmap.put("fullDay", getFull);
-                    konekDB.update(abs.get(i).getKey(), hashmap).addOnSuccessListener(suc -> {
-                        Toast.makeText(this, "Berhasil Update Absensi!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }).addOnFailureListener(er -> {
-                        Toast.makeText(this, ""+ er.getMessage(), Toast.LENGTH_SHORT).show();
-                    });
-                }
-                else{
-                    Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);
-                    abs.add(new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull));
-                    konekDB.add(absBaru).addOnSuccessListener(suc -> {
-                        Toast.makeText(this,"Absen Telah diCatat!", Toast.LENGTH_LONG).show();
-                    }).addOnFailureListener(er -> {
-                        Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
-                    });
-                }
+                Log.d("OUTPUT", "Tanggal sekarang : "+tglSekarang);
+                Log.d("Output key all", " : "+abs.get(i).getKey());
+                Log.d("Output tanggal luar if", " : "+abs.get(i).getTanggal());
+                Log.d("Output tanggal hasil", " : "+(tglSekarang == abs.get(i).getTanggal()));
+//                if(tglSekarang == abs.get(i).getTanggal() && norekening == abs.get(i).getnomorRekening()){
+//                    HashMap<String, Object> hashmap = new HashMap<>();
+//                    hashmap.put("tanggal", abs.get(i).getTanggal());
+//                    hashmap.put("namaPegawai", abs.get(i).getnamaPegawai());
+//                    hashmap.put("rolePegawai", abs.get(i).getrolePegawai());
+//                    hashmap.put("nomorRekening", abs.get(i).getnomorRekening());
+//                    hashmap.put("halfDay", getHalf);
+//                    hashmap.put("fullDay", getFull);
+//                    Log.d("keynya", ": "+abs.get(i).getKey());
+//                    konekDB.update(abs.get(i).getKey(), hashmap).addOnSuccessListener(suc -> {
+//                        Toast.makeText(this, "Berhasil Update Absensi!", Toast.LENGTH_SHORT).show();
+//                        finish();
+//                    }).addOnFailureListener(er -> {
+//                        Toast.makeText(this, ""+ er.getMessage(), Toast.LENGTH_SHORT).show();
+//                    });
+//                }
+//                else{
+//                    Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);
+//                    abs.add(new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull));
+//                    konekDB.add(absBaru).addOnSuccessListener(suc -> {
+//                        Toast.makeText(this,"Absen Telah diCatat!", Toast.LENGTH_LONG).show();
+//                    }).addOnFailureListener(er -> {
+//                        Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
+//                    });
+//                }
             }
         }
 
