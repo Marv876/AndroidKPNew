@@ -53,11 +53,12 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
 
         list = new ArrayList<>();
         pgwAdapter = new PegawaiViewAdapter(this, list);
-        recyclerView.setAdapter(pgwAdapter);
+        pgwAdapter.notifyDataSetChanged();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Employee pegawai = dataSnapshot.getValue(Employee.class);
                     pegawai.setKey(dataSnapshot.getKey());
@@ -66,6 +67,7 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
                 }
                 pgwAdapter.notifyDataSetChanged();
                 recyclerView.setAdapter(pgwAdapter);
+
             }
 
             @Override
@@ -73,8 +75,6 @@ public class DaftarPegawaiActivity extends AppCompatActivity {
 //                Log.e(error.getMessage(), "onCancelled: ", error.toException());
             }
         });
-
-
 
     }
 
