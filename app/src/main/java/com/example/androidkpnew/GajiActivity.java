@@ -47,7 +47,7 @@ public class GajiActivity extends AppCompatActivity{
                         Log.d("tanggal akhir millis", " : "+endDate);
                         tanggalRange_txt.setText(materialDatePicker.getHeaderText());
                         Log.d("tanggal range", " : "+tanggalRange_txt.getText());
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
                         String dateStringStart = formatter.format(new Date(startDate));
                         String dateStringEnd = formatter.format(new Date(endDate));
                         Log.d("tanggal awal convert", " : "+dateStringStart);
