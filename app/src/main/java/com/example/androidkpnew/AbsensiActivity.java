@@ -172,37 +172,45 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
             });
             Log.d("array", "total isi array: "+abs.size());
         }else{
+            Boolean cek = true;
+            Boolean berhasil = false;
             Log.d("array", "total isi array: "+abs.size());
-//            for (int i = 0; i <= abs.size(); i++){
-//                Log.d("OUTPUT", "Tanggal sekarang : "+tglSekarang);
-//                Log.d("Output key all", " : "+abs.get(i).getKey());
-//                Log.d("Output tanggal luar if", " : "+abs.get(i).getTanggal());
-//                Log.d("Output tanggal hasil", " : "+(tglSekarang == abs.get(i).getTanggal()));
-////                if(tglSekarang == abs.get(i).getTanggal() && norekening == abs.get(i).getnomorRekening()){
-//                    HashMap<String, Object> hashmap = new HashMap<>();
-//                    hashmap.put("tanggal", abs.get(i).getTanggal());
-//                    hashmap.put("namaPegawai", abs.get(i).getnamaPegawai());
-//                    hashmap.put("rolePegawai", abs.get(i).getrolePegawai());
-//                    hashmap.put("nomorRekening", abs.get(i).getnomorRekening());
-//                    hashmap.put("halfDay", getHalf);
-//                    hashmap.put("fullDay", getFull);
-//                    Log.d("keynya", ": "+abs.get(i).getKey());
-//                    konekDB.update(abs.get(i).getKey(), hashmap).addOnSuccessListener(suc -> {
-//                        Toast.makeText(this, "Berhasil Update Absensi!", Toast.LENGTH_SHORT).show();
-//                        finish();
-//                    }).addOnFailureListener(er -> {
-//                        Toast.makeText(this, ""+ er.getMessage(), Toast.LENGTH_SHORT).show();
-//                    });
-//                }
-//                else{
-                    Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);
-                    abs.add(new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull));
-                    konekDB.add(absBaru).addOnSuccessListener(suc -> {
-                        Toast.makeText(this,"Absen Telah diCatat!", Toast.LENGTH_LONG).show();
+            for (int i = 0; i < abs.size(); i++){
+                Log.d("OUTPUT", "Tanggal sekarang : "+tglSekarang);
+                Log.d("Output key all", " : "+abs.get(i).getKey());
+                Log.d("Output tanggal luar if", " : "+abs.get(i).getTanggal());
+                Log.d("Output tanggal hasil", " : "+(tglSekarang == abs.get(i).getTanggal()));
+                if(tglSekarang == abs.get(i).getTanggal() && norekening == abs.get(i).getnomorRekening() && abs.get(i).getKey() != null){
+                    HashMap<String, Object> hashmap = new HashMap<>();
+                    hashmap.put("tanggal", abs.get(i).getTanggal());
+                    hashmap.put("namaPegawai", abs.get(i).getnamaPegawai());
+                    hashmap.put("rolePegawai", abs.get(i).getrolePegawai());
+                    hashmap.put("nomorRekening", abs.get(i).getnomorRekening());
+                    hashmap.put("halfDay", getHalf);
+                    hashmap.put("fullDay", getFull);
+                    Log.d("halfday", " : "+getHalf);
+                    Log.d("fullday", " : "+getFull);
+                    konekDB.update(abs.get(i).getKey(), hashmap).addOnSuccessListener(suc -> {
+                        Log.d("update", "absensi : true");
                     }).addOnFailureListener(er -> {
-                        Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, ""+ er.getMessage(), Toast.LENGTH_SHORT).show();
                     });
-//                }
+                    berhasil = true;
+                    cek = false;
+                }
+            }
+            if(berhasil){
+                Toast.makeText(this, "Berhasil Update Absensi!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            if(cek){
+                Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);
+                abs.add(new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull));
+                konekDB.add(absBaru).addOnSuccessListener(suc -> {
+                    Toast.makeText(this,"Absen Telah diCatat!", Toast.LENGTH_LONG).show();
+                }).addOnFailureListener(er -> {
+                    Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
+                });
             }
         }
 
@@ -210,3 +218,4 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
 
     }
 
+}

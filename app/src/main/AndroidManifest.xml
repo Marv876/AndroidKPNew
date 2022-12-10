@@ -24,6 +24,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.AndroidKPNEW">
         <activity
+            android:name="com.example.androidkpnew.GajiActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.androidkpnew.UbahDataPegawai"
             android:exported="false" />
         <activity
