@@ -19,10 +19,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        btnGaji.setOnClickListener{
-//            val intent = Intent(this, GajiActivity::class.java)
-//            startActivity(intent)
-//        }
+        btnGaji.setOnClickListener{
+            val intent = Intent(this, GajiActivity::class.java)
+            startActivity(intent)
+        }
 
         btnAnggota.setOnClickListener{
             val intent = Intent(this, DaftarAnggotaActivity::class.java)
