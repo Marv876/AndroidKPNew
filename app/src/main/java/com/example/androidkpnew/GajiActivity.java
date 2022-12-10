@@ -18,6 +18,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 public class GajiActivity extends AppCompatActivity{
@@ -42,13 +43,15 @@ public class GajiActivity extends AppCompatActivity{
                     public void onPositiveButtonClick(Pair <Long, Long> selection) {
                         Long startDate = selection.first;
                         Long endDate = selection.second;
-                        Log.d("tanggal awal", " : "+startDate);
-                        Log.d("tanggal akhir", " : "+endDate);
+                        Log.d("tanggal awal millis", " : "+startDate);
+                        Log.d("tanggal akhir millis", " : "+endDate);
                         tanggalRange_txt.setText(materialDatePicker.getHeaderText());
-                        Calendar utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-//                        utc.setTimeInMillis(selection);
-//                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//                        String formatted = format.startDate(utc.getTime());
+                        Log.d("tanggal range", " : "+tanggalRange_txt.getText());
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                        String dateStringStart = formatter.format(new Date(startDate));
+                        String dateStringEnd = formatter.format(new Date(endDate));
+                        Log.d("tanggal awal convert", " : "+dateStringStart);
+                        Log.d("tanggal akhir convert", " : "+dateStringEnd);
                     }
                 });
             }
