@@ -24,6 +24,12 @@
         android:testOnly="true"
         android:theme="@style/Theme.AndroidKPNEW">
         <activity
+            android:name="com.example.androidkpnew.UbahGajiPegawai"
+            android:exported="false" />
+        <activity
+            android:name="com.example.androidkpnew.BuatGajiPegawai"
+            android:exported="false" />
+        <activity
             android:name="com.example.androidkpnew.GajiActivity"
             android:exported="false" />
         <activity

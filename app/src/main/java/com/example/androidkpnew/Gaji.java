@@ -2,7 +2,9 @@ package com.example.androidkpnew;
 
 import com.google.firebase.database.Exclude;
 
-public class Gaji {
+import java.io.Serializable;
+
+public class Gaji implements Serializable {
 
     @Exclude
     private String key;
@@ -15,6 +17,28 @@ public class Gaji {
     private int nilaiTunai;
     private int nilaiTransfer;
     private int totalGaji;
+
+    public Gaji(){}
+
+    public Gaji(String tanggalDari, String tanggalSampai, String namaPegawai, String rolePegawai, int nomorRekening, int jumlahAbsen, int nilaiTunai, int nilaiTransfer, int totalGaji) {
+        this.tanggalDari = tanggalDari;
+        this.tanggalSampai = tanggalSampai;
+        this.namaPegawai = namaPegawai;
+        this.rolePegawai = rolePegawai;
+        this.nomorRekening = nomorRekening;
+        this.jumlahAbsen = jumlahAbsen;
+        this.nilaiTunai = nilaiTunai;
+        this.nilaiTransfer = nilaiTransfer;
+        this.totalGaji = totalGaji;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getTanggalDari() {
         return tanggalDari;
