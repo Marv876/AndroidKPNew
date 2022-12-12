@@ -45,6 +45,7 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
     ArrayList<Employee> list;
     ArrayList<Absen> abs = new ArrayList<>();
     String tglSekarang;
+    String ViewTanggal;
     Boolean sdhPilihTgl = false;
     String getNama, getRole, getHalf, getFull;
     int getNorek;
@@ -140,10 +141,12 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         c.set(Calendar.MONTH, bulan);
         c.set(Calendar.DAY_OF_MONTH, hari);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat coba = new SimpleDateFormat("dd MMMM yyyy");
         tglSekarang = formatter.format(c.getTime());
+        ViewTanggal = coba.format(c.getTime());
         sdhPilihTgl = true;
         if(sdhPilihTgl == true){
-            tanggalnya.setText(tglSekarang);
+            tanggalnya.setText(ViewTanggal);
         }
         Log.d("Tanggal Sudah dipilih", "Boolean : "+sdhPilihTgl);
     }
