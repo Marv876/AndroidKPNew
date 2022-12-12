@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -138,7 +139,8 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         c.set(Calendar.YEAR, tahun);
         c.set(Calendar.MONTH, bulan);
         c.set(Calendar.DAY_OF_MONTH, hari);
-        tglSekarang = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        tglSekarang = formatter.format(c.getTime());
         sdhPilihTgl = true;
         if(sdhPilihTgl == true){
             tanggalnya.setText(tglSekarang);
