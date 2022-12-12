@@ -206,7 +206,7 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
             }
             if(berhasil){
                 Toast.makeText(this, "Berhasil Update Absensi!", Toast.LENGTH_SHORT).show();
-                finish();
+//                finish();
             }
             if(cek){
                 Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);

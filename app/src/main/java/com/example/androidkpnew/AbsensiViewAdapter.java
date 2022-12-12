@@ -121,8 +121,6 @@ public class AbsensiViewAdapter extends RecyclerView.Adapter<AbsensiViewAdapter.
                 }
             }
         });
-//        listenerAbsensi.addToList(holder.namaPegawai.getText().toString(), holder.namaPegawai.getText().toString(), Integer.parseInt(holder.norekening.getText().toString()), holder.halfDay.getText().toString(), holder.fullDay.getText().toString());
-
 
     }
 

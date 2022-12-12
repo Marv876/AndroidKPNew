@@ -3,11 +3,11 @@
     <item
         android:id="@+id/menu_tambah"
         android:title="Buat Gaji"/>
-    <item
-        android:id="@+id/menu_ubah"
-        android:title="Ubah Data Gaji"/>
-    <item
-        android:id="@+id/menu_hapus"
-        android:title="Hapus Data Gaji"/>
+<!--    <item-->
+<!--        android:id="@+id/menu_ubah"-->
+<!--        android:title="Ubah Data Gaji"/>-->
+<!--    <item-->
+<!--        android:id="@+id/menu_hapus"-->
+<!--        android:title="Hapus Data Gaji"/>-->
 
 </menu>

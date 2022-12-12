@@ -2,7 +2,9 @@ package com.example.androidkpnew;
 
 import com.google.firebase.database.Exclude;
 
-public class Absen {
+import java.io.Serializable;
+
+public class Absen implements Serializable {
 
     @Exclude
     private String key;

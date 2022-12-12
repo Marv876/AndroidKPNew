@@ -32,6 +32,15 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/list_tanggal_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tanggal"
+                android:textSize="16dp"
+                android:textColor="@color/black" />
+
+            <TextView
                 android:id="@+id/list_nama_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
