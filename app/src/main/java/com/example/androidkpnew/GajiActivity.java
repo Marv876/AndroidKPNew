@@ -45,12 +45,11 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
     String getNama, getRole;
     int getNorek;
     float getAbsen;
-
+    DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaji);
-
         final TextView tanggalRange_txt = findViewById(R.id.tanggalRange_txt);
         final Button kalender = findViewById(R.id.calendar_btn);
         recyclerView = findViewById(R.id.data_gaji);
@@ -60,25 +59,6 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         gajiViewAdapter = new GajiViewAdapter(this, abs, gaji, emp, this);
         recyclerView.setAdapter(gajiViewAdapter);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Absen absen = dataSnapshot.getValue(Absen.class);
-                    absen.setKey(dataSnapshot.getKey());
-                    abs.add(absen);
-//                    key = dataSnapshot.getKey();
-                }
-                gajiViewAdapter.notifyDataSetChanged();
-                recyclerView.setAdapter(gajiViewAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(error.getMessage(), "onCancelled: ", error.toException());
-            }
-        });
-
         kalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +77,18 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
                         String dateStringEnd = formatter.format(new Date(endDate));
                         Log.d("tanggal awal convert", " : "+dateStringStart);
                         Log.d("tanggal akhir convert", " : "+dateStringEnd);
+                        Query query = database.child("Absen").orderByChild("tanggal").startAt(dateStringStart).endAt(dateStringEnd);
+                        query.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                showListener(snapshot);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Log.e(error.getMessage(), "onCancelled: ", error.toException());
+                            }
+                        });
                     }
                 });
             }
@@ -109,6 +101,16 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
         getRole = rolePegawai;
         getNorek = norekening;
         getAbsen = jumlahAbsen;
+    }
+
+    private void showListener(DataSnapshot snapshot) {
+        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+            Absen absen = dataSnapshot.getValue(Absen.class);
+            absen.setKey(dataSnapshot.getKey());
+            abs.add(absen);
+        }
+        gajiViewAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(gajiViewAdapter);
     }
 
 }

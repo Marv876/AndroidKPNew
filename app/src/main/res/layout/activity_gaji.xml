@@ -23,8 +23,8 @@
 
         <TextView
             android:id="@+id/tanggalRange_txt"
-            android:layout_width="283dp"
-            android:layout_height="32dp"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Pilih Tanggal "
             android:textColor="@color/black"
