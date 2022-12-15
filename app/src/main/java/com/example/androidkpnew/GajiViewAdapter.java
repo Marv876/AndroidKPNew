@@ -27,12 +27,14 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
     ArrayList<Employee> listPegawai;
     CallDataAdapterGaji listenerGaji;
     String dateStringStart, dateStringEnd;
+    ArrayList<Double> masukFull;
+    ArrayList<Double> masukHalf;
     Locale id = new Locale("in","ID");
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy",id);
 
     private static GajiViewAdapter.RecyclerViewClickListener listener;
 
-    public GajiViewAdapter(Context context, ArrayList<Absen> list, ArrayList<Gaji> listGaji, ArrayList<Employee> listPegawai, CallDataAdapterGaji listenerGaji,  String dateStringStart, String dateStringEnd) {
+    public GajiViewAdapter(Context context, ArrayList<Absen> list, ArrayList<Gaji> listGaji, ArrayList<Employee> listPegawai, CallDataAdapterGaji listenerGaji,  String dateStringStart, String dateStringEnd, ArrayList<Double> masukHalf, ArrayList<Double> masukFull) {
         this.context = context;
         this.list = list;
         this.listGaji = listGaji;
@@ -40,6 +42,8 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
         this.listenerGaji = listenerGaji;
         this.dateStringStart = dateStringStart;
         this.dateStringEnd = dateStringEnd;
+        this.masukHalf = masukHalf;
+        this.masukFull = masukFull;
     }
 
     @NonNull
@@ -67,23 +71,9 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
         holder.namaPegawai.setText("Nama : " +abs.getnamaPegawai());
         holder.rolePegawai.setText("Role : " +abs.getrolePegawai());
         holder.norekPegawai.setText("Nomor Rekening : " +abs.getnomorRekening());
-//        int totalMasukFull = Integer.parseInt(abs.getfullDay());
-//        int totalMasukHalf = Integer.parseInt(abs.gethalfDay());
-        int totalMasukFull = 0, totalMasukHalf = 0;
-        Log.d("chkBox", " : "+abs.getfullDay()+", "+abs.gethalfDay());
-        Log.d("tanggal start adapter", " : "+dateStringStart);
-        Log.d("tanggal end adapter", " : "+dateStringEnd);
-        if(abs.gethalfDay() == "1"){
-            totalMasukHalf = 1;
-        }
-        if(abs.getfullDay() == "1"){
-            totalMasukFull = 1;
-        }
-        Log.d("totalMasukFull", " : "+totalMasukFull);
-        Log.d("totalMasukHalf", " : "+totalMasukHalf);
 
-        float pemecah = totalMasukHalf/2;
-        float jumlahAbsen = totalMasukFull+pemecah;
+        Double pemecah = masukHalf.get(0)/2.0;
+        Double jumlahAbsen = (Double) masukFull.get(0) + pemecah;
         holder.jumlahAbsensi.setText("Jumlah Absen : "+jumlahAbsen+" hari");
         listenerGaji.addToList(abs.getnamaPegawai(), abs.getrolePegawai(), abs.getnomorRekening(), jumlahAbsen);
 
@@ -102,25 +92,6 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
                             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         break;
-//                    case R.id.menu_ubah:
-//                        Intent myIntent = new Intent(context, UbahGajiPegawai.class);
-//                        myIntent.putExtra("UPDATE", gaji);
-//                        try {
-//                            context.startActivity(myIntent);
-//                        } catch (ActivityNotFoundException e) {
-//                            // Define what your app should do if no activity can handle the intent.
-//                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-//                        }
-//                        break;
-//                    case R.id.menu_hapus:
-//                        DAOGaji dao = new DAOGaji();
-//                        dao.remove(listGaji.getKey()).addOnSuccessListener(suc -> {
-//                            Toast.makeText(context, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show();
-////                            notifyItemRemoved(position);
-//                        }).addOnFailureListener(er -> {
-//                            Toast.makeText(context, ""+er.getMessage(), Toast.LENGTH_SHORT).show();
-//                        });
-//                        break;
                 }
                 return false;
             });

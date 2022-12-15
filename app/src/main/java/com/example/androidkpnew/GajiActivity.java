@@ -44,10 +44,12 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
     ArrayList<Employee> emp =  new ArrayList<>();
     String getNama, getRole;
     int getNorek;
-    float getAbsen;
+    Double getAbsen;
     Context context;
     CallDataAdapterGaji callGaji;
     String dateStringStart, dateStringEnd;
+    ArrayList<Double> masukFull = new ArrayList<>();
+    ArrayList<Double> masukHalf = new ArrayList<>();
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
     @Override
@@ -83,7 +85,7 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
                         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                         dateStringStart = formatter.format(new Date(startDate));
                         dateStringEnd = formatter.format(new Date(endDate));
-                        gajiViewAdapter = new GajiViewAdapter(context, abs, gaji, emp, callGaji, dateStringStart, dateStringEnd);
+                        gajiViewAdapter = new GajiViewAdapter(context, abs, gaji, emp, callGaji, dateStringStart, dateStringEnd, masukHalf, masukFull);
                         Log.d("tanggal awal convert", " : "+dateStringStart);
                         Log.d("tanggal akhir convert", " : "+dateStringEnd);
                         Query query = database.child("Absen").orderByChild("tanggal").startAt(dateStringStart).endAt(dateStringEnd);
@@ -105,7 +107,7 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
     }
 
     @Override
-    public void addToList(String namaPegawai, String rolePegawai, int norekening, float jumlahAbsen) {
+    public void addToList(String namaPegawai, String rolePegawai, int norekening, Double jumlahAbsen) {
         getNama = namaPegawai;
         getRole = rolePegawai;
         getNorek = norekening;
@@ -119,32 +121,52 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
 
     private void showListener(DataSnapshot snapshot) {
         abs.clear();
-        ArrayList<Object> konstanta = new ArrayList<>();
+        ArrayList<Absen> konstanta = new ArrayList<>();
         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+            String temp1 = dataSnapshot.child("namaPegawai").getValue().toString();
+            String temp2 = dataSnapshot.child("halfDay").getValue().toString();
+            String temp3 = dataSnapshot.child("fullDay").getValue().toString();
+            Log.d("temp1", " : "+temp1);
+            Log.d("temp2", " : "+temp2);
+            Log.d("temp3", " : "+temp3);
+
             if(konstanta.isEmpty()){
-                konstanta.add(dataSnapshot.child("namaPegawai").getValue());
+                konstanta.add(new Absen(temp1, temp2, temp3));
+//                konstanta.add(dataSnapshot.child("namaPegawai").getValue());
                 Absen absen = dataSnapshot.getValue(Absen.class);
                 absen.setKey(dataSnapshot.getKey());
                 abs.add(absen);
             }else{
                 Boolean cek = false;
+                int index = -1;
                 for (int i = 0; i < konstanta.size(); i++) {
-                    if(konstanta.contains(dataSnapshot.child("namaPegawai").getValue())){
+                    if(konstanta.get(i).getnamaPegawai().contains(dataSnapshot.child("namaPegawai").getValue().toString())){
                         cek = true;
+                        index = i;
                     }
                 }
                 if(!cek){
-                    konstanta.add(dataSnapshot.child("namaPegawai").getValue());
+                    konstanta.add(new Absen(temp1, temp2, temp3));
                     Absen absen = dataSnapshot.getValue(Absen.class);
                     absen.setKey(dataSnapshot.getKey());
                     abs.add(absen);
                 }
+                else{
+                    int hitung = Integer.parseInt(konstanta.get(index).gethalfDay())+Integer.parseInt(dataSnapshot.child("halfDay").getValue().toString());
+                    int hitung2 = Integer.parseInt(konstanta.get(index).getfullDay())+Integer.parseInt(dataSnapshot.child("fullDay").getValue().toString());
+                    Log.d("integer", " data index: "+Integer.parseInt(konstanta.get(index).getfullDay()));
+                    Log.d("hitung2 nama :"+konstanta.get(index).getnamaPegawai(), " : "+hitung2);
+                    konstanta.set(index, new Absen(temp1, hitung+"", hitung2+""));
+                }
             }
 
-//            Log.d("snapshot", " : "+dataSnapshot);
-//            Log.d("snapshot nama", " : "+dataSnapshot.child("namaPegawai").getValue());
         }
-        Log.d("konstanta", " : "+konstanta.get(1));
+        for (int i = 0; i < konstanta.size(); i++) {
+            masukHalf.add(Integer.parseInt(konstanta.get(i).gethalfDay())*1.0);
+            masukFull.add(Integer.parseInt(konstanta.get(i).getfullDay())*1.0);
+        }
+        Log.d("snapshot masukhalf", " : "+masukHalf);
+        Log.d("snapshot masukfull", " : "+masukFull);
 
         gajiViewAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(gajiViewAdapter);

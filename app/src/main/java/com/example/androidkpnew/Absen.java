@@ -17,6 +17,12 @@ public class Absen implements Serializable {
 
     public Absen(){}
 
+    public Absen(String namaPegawai,String halfDay, String fullDay) {
+        this.namaPegawai = namaPegawai;
+        this.halfDay = halfDay;
+        this.fullDay = fullDay;
+    }
+
     public Absen(String tanggal, String namaPegawai, String rolePegawai, int nomorRekening, String halfDay, String fullDay) {
         this.tanggal = tanggal;
         this.namaPegawai = namaPegawai;
@@ -70,7 +76,7 @@ public class Absen implements Serializable {
         return halfDay;
     }
 
-    public void serhalfDay(String halfDay) {
+    public void sethalfDay(String halfDay) {
         this.halfDay = halfDay;
     }
 
