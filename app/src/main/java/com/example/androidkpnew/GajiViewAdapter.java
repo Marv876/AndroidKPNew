@@ -29,6 +29,7 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
     String dateStringStart, dateStringEnd;
     ArrayList<Double> masukFull;
     ArrayList<Double> masukHalf;
+    int size = 0, ctr = 0;
     Locale id = new Locale("in","ID");
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy",id);
 
@@ -71,10 +72,17 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
         holder.namaPegawai.setText("Nama : " +abs.getnamaPegawai());
         holder.rolePegawai.setText("Role : " +abs.getrolePegawai());
         holder.norekPegawai.setText("Nomor Rekening : " +abs.getnomorRekening());
+        size = masukHalf.size();
+        Double pemecah;
+        Double jumlahAbsen = 0.0;
+        if(ctr < size){
+            pemecah = masukHalf.get(ctr)/2.0;
+            jumlahAbsen = (Double) masukFull.get(ctr) + pemecah;
+            ctr++;
+        }
 
-        Double pemecah = masukHalf.get(0)/2.0;
-        Double jumlahAbsen = (Double) masukFull.get(0) + pemecah;
         holder.jumlahAbsensi.setText("Jumlah Absen : "+jumlahAbsen+" hari");
+
         listenerGaji.addToList(abs.getnamaPegawai(), abs.getrolePegawai(), abs.getnomorRekening(), jumlahAbsen);
 
         holder.txtOption.setOnClickListener(view -> {

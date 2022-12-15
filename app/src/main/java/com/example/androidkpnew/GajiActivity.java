@@ -121,6 +121,8 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
 
     private void showListener(DataSnapshot snapshot) {
         abs.clear();
+        masukHalf.clear();
+        masukFull.clear();
         ArrayList<Absen> konstanta = new ArrayList<>();
         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
             String temp1 = dataSnapshot.child("namaPegawai").getValue().toString();
