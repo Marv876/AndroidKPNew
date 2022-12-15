@@ -45,19 +45,27 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
     String getNama, getRole;
     int getNorek;
     float getAbsen;
+    Context context;
+    CallDataAdapterGaji callGaji;
+    String dateStringStart, dateStringEnd;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaji);
         final TextView tanggalRange_txt = findViewById(R.id.tanggalRange_txt);
         final Button kalender = findViewById(R.id.calendar_btn);
+        context = this;
+        callGaji = this;
+        dateStringStart = "14/12/2022";
+        dateStringEnd = "15/12/2022";
         recyclerView = findViewById(R.id.data_gaji);
         databaseReference = FirebaseDatabase.getInstance().getReference("Absen");
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.thisMonthInUtcMilliseconds(), MaterialDatePicker.todayInUtcMilliseconds())).build();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        gajiViewAdapter = new GajiViewAdapter(this, abs, gaji, emp, this);
+//        gajiViewAdapter = new GajiViewAdapter(this, abs, gaji, emp, this, dateStringStart, dateStringEnd);
         recyclerView.setAdapter(gajiViewAdapter);
         kalender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +81,9 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
                         tanggalRange_txt.setText(materialDatePicker.getHeaderText());
                         Log.d("tanggal range", " : "+tanggalRange_txt.getText());
                         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                        String dateStringStart = formatter.format(new Date(startDate));
-                        String dateStringEnd = formatter.format(new Date(endDate));
+                        dateStringStart = formatter.format(new Date(startDate));
+                        dateStringEnd = formatter.format(new Date(endDate));
+                        gajiViewAdapter = new GajiViewAdapter(context, abs, gaji, emp, callGaji, dateStringStart, dateStringEnd);
                         Log.d("tanggal awal convert", " : "+dateStringStart);
                         Log.d("tanggal akhir convert", " : "+dateStringEnd);
                         Query query = database.child("Absen").orderByChild("tanggal").startAt(dateStringStart).endAt(dateStringEnd);
@@ -101,14 +110,42 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
         getRole = rolePegawai;
         getNorek = norekening;
         getAbsen = jumlahAbsen;
+
+        Log.d("nama", " : "+getNama);
+        Log.d("role", " : "+getRole);
+        Log.d("norek", " : "+getNorek);
+        Log.d("jumlahAbsen", " : "+getAbsen);
     }
 
     private void showListener(DataSnapshot snapshot) {
+        abs.clear();
+        ArrayList<Object> konstanta = new ArrayList<>();
         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-            Absen absen = dataSnapshot.getValue(Absen.class);
-            absen.setKey(dataSnapshot.getKey());
-            abs.add(absen);
+            if(konstanta.isEmpty()){
+                konstanta.add(dataSnapshot.child("namaPegawai").getValue());
+                Absen absen = dataSnapshot.getValue(Absen.class);
+                absen.setKey(dataSnapshot.getKey());
+                abs.add(absen);
+            }else{
+                Boolean cek = false;
+                for (int i = 0; i < konstanta.size(); i++) {
+                    if(konstanta.contains(dataSnapshot.child("namaPegawai").getValue())){
+                        cek = true;
+                    }
+                }
+                if(!cek){
+                    konstanta.add(dataSnapshot.child("namaPegawai").getValue());
+                    Absen absen = dataSnapshot.getValue(Absen.class);
+                    absen.setKey(dataSnapshot.getKey());
+                    abs.add(absen);
+                }
+            }
+
+//            Log.d("snapshot", " : "+dataSnapshot);
+//            Log.d("snapshot nama", " : "+dataSnapshot.child("namaPegawai").getValue());
         }
+        Log.d("konstanta", " : "+konstanta.get(1));
+
         gajiViewAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(gajiViewAdapter);
     }

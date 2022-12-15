@@ -26,17 +26,20 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
     ArrayList<Gaji> listGaji;
     ArrayList<Employee> listPegawai;
     CallDataAdapterGaji listenerGaji;
+    String dateStringStart, dateStringEnd;
     Locale id = new Locale("in","ID");
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy",id);
 
     private static GajiViewAdapter.RecyclerViewClickListener listener;
 
-    public GajiViewAdapter(Context context, ArrayList<Absen> list, ArrayList<Gaji> listGaji, ArrayList<Employee> listPegawai, CallDataAdapterGaji listenerGaji) {
+    public GajiViewAdapter(Context context, ArrayList<Absen> list, ArrayList<Gaji> listGaji, ArrayList<Employee> listPegawai, CallDataAdapterGaji listenerGaji,  String dateStringStart, String dateStringEnd) {
         this.context = context;
         this.list = list;
         this.listGaji = listGaji;
         this.listPegawai = listPegawai;
         this.listenerGaji = listenerGaji;
+        this.dateStringStart = dateStringStart;
+        this.dateStringEnd = dateStringEnd;
     }
 
     @NonNull
@@ -60,7 +63,7 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
         kursIndonesia.setDecimalFormatSymbols(formatRp);
 
         Absen abs = list.get(position);
-        holder.tanggal.setText("Tanggal : "+abs.getTanggal());
+//        holder.tanggal.setText("Tanggal : "+abs.getTanggal());
         holder.namaPegawai.setText("Nama : " +abs.getnamaPegawai());
         holder.rolePegawai.setText("Role : " +abs.getrolePegawai());
         holder.norekPegawai.setText("Nomor Rekening : " +abs.getnomorRekening());
@@ -68,6 +71,8 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
 //        int totalMasukHalf = Integer.parseInt(abs.gethalfDay());
         int totalMasukFull = 0, totalMasukHalf = 0;
         Log.d("chkBox", " : "+abs.getfullDay()+", "+abs.gethalfDay());
+        Log.d("tanggal start adapter", " : "+dateStringStart);
+        Log.d("tanggal end adapter", " : "+dateStringEnd);
         if(abs.gethalfDay() == "1"){
             totalMasukHalf = 1;
         }
@@ -76,6 +81,7 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
         }
         Log.d("totalMasukFull", " : "+totalMasukFull);
         Log.d("totalMasukHalf", " : "+totalMasukHalf);
+
         float pemecah = totalMasukHalf/2;
         float jumlahAbsen = totalMasukFull+pemecah;
         holder.jumlahAbsensi.setText("Jumlah Absen : "+jumlahAbsen+" hari");
@@ -128,7 +134,7 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView tanggal, namaPegawai, rolePegawai, norekPegawai, jumlahAbsensi, txtOption;
+        TextView namaPegawai, rolePegawai, norekPegawai, jumlahAbsensi, txtOption;
 
         CallDataAdapterGaji listenerGaji;
 
@@ -137,7 +143,7 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
 
             this.listenerGaji =  listenerGaji;
 
-            tanggal = itemView.findViewById(R.id.list_tanggal_tv);
+//            tanggal = itemView.findViewById(R.id.list_tanggal_tv);
             namaPegawai = itemView.findViewById(R.id.list_nama_tv);
             rolePegawai = itemView.findViewById(R.id.list_role_tv);
             norekPegawai = itemView.findViewById(R.id.list_norek_tv);
