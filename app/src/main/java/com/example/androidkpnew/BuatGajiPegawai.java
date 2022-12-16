@@ -2,13 +2,17 @@ package com.example.androidkpnew;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 public class BuatGajiPegawai extends AppCompatActivity {
     private TextView txtNamaPegawai;
@@ -27,6 +31,7 @@ public class BuatGajiPegawai extends AppCompatActivity {
     private LinearLayout line2;
     private TextView txtGabul;
     private Button btnCreate;
+    private Button test;
     int nominalTransfer = 0;
 
     @Override
@@ -67,6 +72,27 @@ public class BuatGajiPegawai extends AppCompatActivity {
 //            nominalTransfer = 0;
 //        }
 //
+
+        chkMingguan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chkMingguan.isChecked() == true){
+                    line1.setVisibility(View.VISIBLE);
+                }else {
+                    line1.setVisibility(View.GONE);
+                }
+            }
+        });
+        chkBulanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (chkBulanan.isChecked() == true){
+                    line2.setVisibility(View.VISIBLE);
+                }else {
+                    line2.setVisibility(View.GONE);
+                }
+            }
+        });
 //        if(chkMingguan.isChecked()){
 //            line1.setVisibility(View.VISIBLE);
 //        }
