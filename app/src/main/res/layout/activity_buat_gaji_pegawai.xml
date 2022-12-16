@@ -93,10 +93,11 @@
             android:layout_marginLeft="90dp"/>
 
         <TextView
+            android:id="@+id/fullday_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="total fullday"
-            android:textColor="@color/black"
+            android:textColor="#5BFA5E"
             android:textSize="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"/>
@@ -118,10 +119,11 @@
             android:layout_marginLeft="90dp"/>
 
         <TextView
+            android:id="@+id/halfday_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="total halfday"
-            android:textColor="@color/black"
+            android:textColor="#5BFA5E"
             android:textSize="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"/>
@@ -141,6 +143,7 @@
         android:id="@+id/et_nominalTransfer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="Masukkan Nominal transfer"
         android:textSize="16dp"
         android:layout_marginLeft="32dp"
@@ -381,14 +384,14 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/ubahData_btn"
+        android:id="@+id/buatData_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:textColor="#ffd700"
         android:backgroundTint="@color/black"
-        android:text="Ubah Gaji Pegawai" />
+        android:text="Buat Gaji Pegawai" />
 
 
 
