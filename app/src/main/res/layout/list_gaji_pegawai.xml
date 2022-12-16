@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
-        android:background="@drawable/boder">
+        android:background="@drawable/tipid">
 
         <!--        <ImageView-->
         <!--            android:id="@+id/mhs_image_iv"-->
