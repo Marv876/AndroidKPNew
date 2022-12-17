@@ -31,7 +31,6 @@ public class BuatGajiPegawai extends AppCompatActivity {
     private LinearLayout line2;
     private TextView txtGabul;
     private Button btnCreate;
-    private Button test;
     int nominalTransfer = 0;
 
     @Override
@@ -66,11 +65,11 @@ public class BuatGajiPegawai extends AppCompatActivity {
             txtTotalHalf.setText(abs_edit.gethalfDay());
         }
 
-//        if(etNominalTf.getText().toString() != ""){
-//            nominalTransfer = Integer.parseInt(etNominalTf.getText().toString());
-//        }else{
-//            nominalTransfer = 0;
-//        }
+        if(etNominalTf.getText().toString() != ""){
+            nominalTransfer = Integer.parseInt(etNominalTf.getText().toString());
+        }else{
+            nominalTransfer = 0;
+        }
 //
 
         chkMingguan.setOnClickListener(new View.OnClickListener() {
