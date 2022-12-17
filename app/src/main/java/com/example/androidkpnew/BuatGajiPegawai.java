@@ -56,12 +56,16 @@ public class BuatGajiPegawai extends AppCompatActivity {
     int gapo, gamin, gabul;
     Double hitung;
     DatabaseReference databaseReference;
+    private String formatRupiah(Double number){
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(number);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buat_gaji_pegawai);
-
         DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
         DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
         formatRp.setCurrencySymbol("Rp. ");
@@ -140,9 +144,10 @@ public class BuatGajiPegawai extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                String resultRupiah = formatRupiah(Double.parseDouble(txtNominalTf.getText().toString()));
                 String inputText = etNominalTf.getText().toString();
-                txtTotalAbsensi2.setText(inputText.replaceAll(",",""));
-//                kursIndonesia.format(txtTotalAbsensi2.getText());
+                txtNominalTf.setText("Rp. "+inputText.replaceAll(resultRupiah , ""));
+//                kursIndonesia.format(txtNominalTf.getText());
             }
         });
 
