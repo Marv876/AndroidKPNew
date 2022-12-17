@@ -171,7 +171,7 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
             Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);
             abs.add(new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull));
             konekDB.add(absBaru).addOnSuccessListener(suc -> {
-                Toast.makeText(this,"Absen Telah diCatat!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Absen Telah diCatat!", Toast.LENGTH_SHORT).show();
             }).addOnFailureListener(er -> {
                 Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
             });
@@ -181,10 +181,6 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
             Boolean berhasil = false;
             Log.d("array", "total isi array: "+abs.size());
             for (int i = 0; i < abs.size(); i++){
-                Log.d("OUTPUT", "Tanggal sekarang : "+tglSekarang);
-                Log.d("Output key all", " : "+abs.get(i).getKey());
-                Log.d("Output tanggal luar if", " : "+abs.get(i).getTanggal());
-                Log.d("Output tanggal hasil", " : "+(tglSekarang == abs.get(i).getTanggal()));
                 if(tglSekarang == abs.get(i).getTanggal() && norekening == abs.get(i).getnomorRekening() && abs.get(i).getKey() != null){
                     HashMap<String, Object> hashmap = new HashMap<>();
                     hashmap.put("tanggal", abs.get(i).getTanggal());

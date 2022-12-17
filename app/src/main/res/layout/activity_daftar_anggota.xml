@@ -8,36 +8,41 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="140dp" />
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Daftar Pegawai"
         android:textSize="28sp"
         android:textColor="@color/black"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Pegawai"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"/>
 
     <EditText
         android:id="@+id/namapegawai_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
         android:inputType="textPersonName"
         android:hint="Nama Pegawai"
-
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Role Pegawai"
         android:textColor="@color/black"
-        android:textSize="18dp"/>
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"/>
 
     <Spinner
         android:id="@+id/role_spinner"
@@ -45,18 +50,37 @@
         android:layout_height="wrap_content"
         android:autofillHints="Role Pegawai"
         android:entries="@array/jurusan_array"
-        />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nomor Rekening"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/norekening_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
         android:inputType="number"
         android:hint="Nomor Rekening"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gaji Pokok"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/gajipokok_etn"
@@ -64,10 +88,19 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Gaji Pokok"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
         android:inputType="number"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gaji Mingguan"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/gajimingguan_etn"
@@ -75,10 +108,19 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Gaji Mingguan"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
         android:inputType="number"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gaji Bulanan"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/gajibulanan_etn"
@@ -87,10 +129,10 @@
         android:ems="10"
         android:hint="Gaji Bulanan"
         android:inputType="number"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
     <Button
         android:id="@+id/submit_btn"

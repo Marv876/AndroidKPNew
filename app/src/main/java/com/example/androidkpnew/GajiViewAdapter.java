@@ -29,13 +29,15 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
     String dateStringStart, dateStringEnd;
     ArrayList<Double> masukFull;
     ArrayList<Double> masukHalf;
+    ArrayList<String> simpanHalf = new ArrayList<>();
+    ArrayList<String> simpanFull = new ArrayList<>();
     int size = 0, ctr = 0;
     Locale id = new Locale("in","ID");
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy",id);
 
     private static GajiViewAdapter.RecyclerViewClickListener listener;
 
-    public GajiViewAdapter(Context context, ArrayList<Absen> list, ArrayList<Gaji> listGaji, ArrayList<Employee> listPegawai, CallDataAdapterGaji listenerGaji,  String dateStringStart, String dateStringEnd, ArrayList<Double> masukHalf, ArrayList<Double> masukFull) {
+    public GajiViewAdapter(Context context, ArrayList<Absen> list, ArrayList<Employee> listPegawai, CallDataAdapterGaji listenerGaji,  String dateStringStart, String dateStringEnd, ArrayList<Double> masukHalf, ArrayList<Double> masukFull) {
         this.context = context;
         this.list = list;
         this.listGaji = listGaji;
@@ -66,8 +68,9 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
         formatRp.setMonetaryDecimalSeparator(',');
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
-
+        Log.d("position", " : "+position);
         Absen abs = list.get(position);
+        Employee pegawai = listPegawai.get(position);
 //        holder.tanggal.setText("Tanggal : "+abs.getTanggal());
         holder.namaPegawai.setText("Nama : " +abs.getnamaPegawai());
         holder.rolePegawai.setText("Role : " +abs.getrolePegawai());
@@ -75,12 +78,15 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
         size = masukHalf.size();
         Double pemecah;
         Double jumlahAbsen = 0.0;
+        simpanHalf.add(masukHalf.get(ctr).toString());
+        simpanFull.add(masukFull.get(ctr).toString());
+        Log.d("half", " : "+masukHalf.get(ctr).toString());
+        Log.d("full", " : "+masukFull.get(ctr).toString());
         if(ctr < size){
             pemecah = masukHalf.get(ctr)/2.0;
             jumlahAbsen = (Double) masukFull.get(ctr) + pemecah;
             ctr++;
         }
-
         holder.jumlahAbsensi.setText("Jumlah Absen : "+jumlahAbsen+" hari");
 
         listenerGaji.addToList(abs.getnamaPegawai(), abs.getrolePegawai(), abs.getnomorRekening(), jumlahAbsen);
@@ -91,8 +97,16 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
             popupMenu.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()){
                     case R.id.menu_tambah:
+                        int posisiSkrng = 0;
                         Intent startIntent = new Intent(context, BuatGajiPegawai.class);
+                        if(list.get(position).getnamaPegawai() == abs.getnamaPegawai()){
+                            posisiSkrng = position;
+                        }
                         startIntent.putExtra("ADD", abs);
+                        startIntent.putExtra("ADD2", pegawai);
+                        startIntent.putExtra("HALF", simpanHalf);
+                        startIntent.putExtra("FULL", simpanFull);
+                        startIntent.putExtra("POSITION", posisiSkrng);
                         try {
                             context.startActivity(startIntent);
                         } catch (ActivityNotFoundException e) {
