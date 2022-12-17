@@ -40,7 +40,6 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
     GajiViewAdapter gajiViewAdapter;
     DatabaseReference databaseReference;
     ArrayList<Absen> abs =  new ArrayList<>();
-    ArrayList<Gaji> gaji =  new ArrayList<>();
     ArrayList<Employee> emp =  new ArrayList<>();
     String getNama, getRole;
     int getNorek;
@@ -85,7 +84,7 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
                         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                         dateStringStart = formatter.format(new Date(startDate));
                         dateStringEnd = formatter.format(new Date(endDate));
-                        gajiViewAdapter = new GajiViewAdapter(context, abs, gaji, emp, callGaji, dateStringStart, dateStringEnd, masukHalf, masukFull);
+                        gajiViewAdapter = new GajiViewAdapter(context, abs, emp, callGaji, dateStringStart, dateStringEnd, masukHalf, masukFull);
                         Log.d("tanggal awal convert", " : "+dateStringStart);
                         Log.d("tanggal akhir convert", " : "+dateStringEnd);
                         Query query = database.child("Absen").orderByChild("tanggal").startAt(dateStringStart).endAt(dateStringEnd);
@@ -138,6 +137,9 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
                 Absen absen = dataSnapshot.getValue(Absen.class);
                 absen.setKey(dataSnapshot.getKey());
                 abs.add(absen);
+                Employee employ = dataSnapshot.getValue(Employee.class);
+                employ.setKey(dataSnapshot.getKey());
+                emp.add(employ);
             }else{
                 Boolean cek = false;
                 int index = -1;
@@ -152,12 +154,15 @@ public class GajiActivity extends AppCompatActivity implements CallDataAdapterGa
                     Absen absen = dataSnapshot.getValue(Absen.class);
                     absen.setKey(dataSnapshot.getKey());
                     abs.add(absen);
+                    Employee employ = dataSnapshot.getValue(Employee.class);
+                    employ.setKey(dataSnapshot.getKey());
+                    emp.add(employ);
                 }
                 else{
                     int hitung = Integer.parseInt(konstanta.get(index).gethalfDay())+Integer.parseInt(dataSnapshot.child("halfDay").getValue().toString());
                     int hitung2 = Integer.parseInt(konstanta.get(index).getfullDay())+Integer.parseInt(dataSnapshot.child("fullDay").getValue().toString());
                     Log.d("integer", " data index: "+Integer.parseInt(konstanta.get(index).getfullDay()));
-                    Log.d("hitung2 nama :"+konstanta.get(index).getnamaPegawai(), " : "+hitung2);
+//                    Log.d("hitung2 nama :"+konstanta.get(index).getnamaPegawai(), " : "+hitung2);
                     konstanta.set(index, new Absen(temp1, hitung+"", hitung2+""));
                 }
             }
