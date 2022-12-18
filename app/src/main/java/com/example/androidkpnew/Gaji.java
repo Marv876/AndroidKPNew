@@ -8,8 +8,7 @@ public class Gaji implements Serializable {
 
     @Exclude
     private String key;
-    private String tanggalDari;
-    private String tanggalSampai;
+    private String tanggalBuat;
     private String namaPegawai;
     private String rolePegawai;
     private int nomorRekening;
@@ -20,9 +19,8 @@ public class Gaji implements Serializable {
 
     public Gaji(){}
 
-    public Gaji(String tanggalDari, String tanggalSampai, String namaPegawai, String rolePegawai, int nomorRekening, int jumlahAbsen, int nilaiTunai, int nilaiTransfer, int totalGaji) {
-        this.tanggalDari = tanggalDari;
-        this.tanggalSampai = tanggalSampai;
+    public Gaji(String tanggalBuat,  String namaPegawai, String rolePegawai, int nomorRekening, int jumlahAbsen, int nilaiTunai, int nilaiTransfer, int totalGaji) {
+        this.tanggalBuat = tanggalBuat;
         this.namaPegawai = namaPegawai;
         this.rolePegawai = rolePegawai;
         this.nomorRekening = nomorRekening;
@@ -40,20 +38,12 @@ public class Gaji implements Serializable {
         this.key = key;
     }
 
-    public String getTanggalDari() {
-        return tanggalDari;
+    public String getTanggalBuat() {
+        return tanggalBuat;
     }
 
-    public void setTanggalDari(String tanggalDari) {
-        this.tanggalDari = tanggalDari;
-    }
-
-    public String getTanggalSampai() {
-        return tanggalSampai;
-    }
-
-    public void setTanggalSampai(String tanggalSampai) {
-        this.tanggalSampai = tanggalSampai;
+    public void setTanggalBuat(String tanggalBuat) {
+        this.tanggalBuat = tanggalBuat;
     }
 
     public String getNamaPegawai() {

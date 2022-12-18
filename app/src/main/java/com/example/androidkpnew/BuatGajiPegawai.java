@@ -52,7 +52,7 @@ public class BuatGajiPegawai extends AppCompatActivity {
     private TextView txtNominalTf;
     private Button btnCreate;
     private Button test;
-    int nominalTransfer = 0;
+    int simpanGamin = 0, simpanGabul = 0, totalhabishitung = 0, simpanhabishitung = 0, getnominal = 0;
     int gapo, gamin, gabul;
     Double hitung;
     DatabaseReference databaseReference;
@@ -122,6 +122,12 @@ public class BuatGajiPegawai extends AppCompatActivity {
                     }
                 }
                 txtGajiPokok.setText(kursIndonesia.format(gapo)+"");
+                double total = gapo*hitung;
+                totalhabishitung = (int)total;
+                txtTotalAbsensi.setText(kursIndonesia.format((int) total));
+                int subtotal = totalhabishitung+simpanGamin+simpanGabul;
+                simpanhabishitung = subtotal;
+                txtTotalAbsensi2.setText(kursIndonesia.format(subtotal));
             }
 
             @Override
@@ -138,16 +144,25 @@ public class BuatGajiPegawai extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
             @Override
             public void afterTextChanged(Editable editable) {
                 String resultRupiah = formatRupiah(Double.parseDouble(txtNominalTf.getText().toString()));
                 String inputText = etNominalTf.getText().toString();
                 txtNominalTf.setText("Rp. "+inputText.replaceAll(resultRupiah , ""));
-//                kursIndonesia.format(txtNominalTf.getText());
+                if (etNominalTf.getText().toString() == ""){
+                    getnominal = 0;
+                    txtNominalTf.setText("Rp. 0");
+                }else{
+                    try {
+                        getnominal = Integer.parseInt(etNominalTf.getText().toString().replaceAll(",",""));
+                    }catch (Exception er){
+                        Log.d("error : ", er.getMessage());
+                    }
+                }
+                int grandtotal = simpanhabishitung - getnominal;
+                txtTotalAbsensi3.setText(kursIndonesia.format(grandtotal));
             }
         });
 
@@ -155,31 +170,78 @@ public class BuatGajiPegawai extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (chkMingguan.isChecked() == true){
+                    line1.setVisibility(View.VISIBLE);
                     if(hitung < 5.5){
-                        line1.setVisibility(View.VISIBLE);
                         Toast.makeText(BuatGajiPegawai.this, "Absen tidak memenuhi!", Toast.LENGTH_LONG).show();
                         txtGamin.setText(kursIndonesia.format(gamin)+"");
+                        simpanGamin = gamin;
                         txtGamin.setTextColor(Color.parseColor("#ff0000"));
+                        int subtotal = (int)(gapo*hitung)+simpanGamin+simpanGabul;
+                        simpanhabishitung = subtotal;
+                        txtTotalAbsensi2.setText(kursIndonesia.format(subtotal));
+                        int grandtotal = simpanhabishitung - getnominal;
+                        txtTotalAbsensi3.setText(kursIndonesia.format(grandtotal));
                     }else{
-                        txtGamin.setText(kursIndonesia.format(gamin+""));
+                        simpanGamin = gamin;
+                        txtGamin.setText(kursIndonesia.format(gamin)+"");
                         txtGamin.setTextColor(Color.parseColor("#000000"));
+                        int subtotal = (int)(gapo*hitung)+simpanGamin+simpanGabul;
+                        simpanhabishitung = subtotal;
+                        txtTotalAbsensi2.setText(kursIndonesia.format(subtotal));
+                        int grandtotal = simpanhabishitung - getnominal;
+                        txtTotalAbsensi3.setText(kursIndonesia.format(grandtotal));
                     }
                 }else {
                     line1.setVisibility(View.GONE);
+                    simpanGamin = 0;
+                    int subtotal = (int)(gapo*hitung)+simpanGamin+simpanGabul;
+                    simpanhabishitung = subtotal;
+                    txtTotalAbsensi2.setText(kursIndonesia.format(subtotal));
                     txtGamin.setText("0");
+                    int grandtotal = simpanhabishitung - getnominal;
+                    txtTotalAbsensi3.setText(kursIndonesia.format(grandtotal));
                 }
             }
         });
+
         chkBulanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (chkBulanan.isChecked() == true){
                     line2.setVisibility(View.VISIBLE);
                     txtGabul.setText(kursIndonesia.format(gabul)+"");
+                    simpanGabul = gabul;
+                    int subtotal = (int)(gapo*hitung)+simpanGamin+simpanGabul;
+                    simpanhabishitung = subtotal;
+                    txtTotalAbsensi2.setText(kursIndonesia.format(subtotal));
+                    int grandtotal = simpanhabishitung - getnominal;
+                    txtTotalAbsensi3.setText(kursIndonesia.format(grandtotal));
                 }else {
                     line2.setVisibility(View.GONE);
+                    simpanGabul = 0;
+                    int subtotal = (int)(gapo*hitung)+simpanGamin+simpanGabul;
+                    simpanhabishitung = subtotal;
+                    txtTotalAbsensi2.setText(kursIndonesia.format(subtotal));
                     txtGabul.setText("0");
+                    int grandtotal = simpanhabishitung - getnominal;
+                    txtTotalAbsensi3.setText(kursIndonesia.format(grandtotal));
                 }
+            }
+        });
+        
+        btnCreate.setOnClickListener(view -> {
+            if(etNominalTf.getText().toString().matches("")){
+                Toast.makeText(this, "Isi Nominal transfernya!", Toast.LENGTH_SHORT).show();
+            }else{
+                Log.d("isi edittext", " : "+etNominalTf.getText().toString());
+//                DAOGaji konekDB = new DAOGaji();
+//                Gaji gaji = new Gaji();
+//                konekDB.add(gaji).addOnSuccessListener(suc -> {
+//                    Toast.makeText(this,"Telah Terinput", Toast.LENGTH_LONG).show();
+//                }).addOnFailureListener(er -> {
+//                    Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
+//                });
+                finish();
             }
         });
 

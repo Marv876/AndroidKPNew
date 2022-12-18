@@ -13,68 +13,95 @@
         android:text="Input Gaji Pegawai"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="28sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nama Pegawai    :"
-        android:textSize="16dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
-
-    <TextView
-        android:id="@+id/txt_namaPegawai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:text="Nama Pegawai"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="16dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Role Pegawai       :"
-        android:textSize="16dp"
+        android:textSize="28sp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginBottom="5dp"/>
 
-    <TextView
-        android:id="@+id/txt_rolePegawai"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Role Pegawai"
-        android:textSize="16dp"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_marginLeft="60dp"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Pegawai    :"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/txt_namaPegawai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Nama Pegawai"
+            android:textColor="@android:color/holo_green_light"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Role Pegawai       :"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/txt_rolePegawai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Role Pegawai"
+            android:textSize="16dp"
+            android:textColor="@android:color/holo_green_light"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Nomor Rekening :"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/txt_norekPegawai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Norek"
+            android:textSize="16dp"
+            android:textColor="@android:color/holo_green_light"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="Nomor Rekening :"
+        android:text="Total Kehadiran "
         android:textSize="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"/>
-
-    <TextView
-        android:id="@+id/txt_norekPegawai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Norek"
-        android:textSize="16dp"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_marginLeft="60dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Total Kehadiran   :"
-        android:textSize="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"/>
 
@@ -90,14 +117,14 @@
             android:text="Full Day  :"
             android:textSize="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="90dp"/>
+            android:layout_marginLeft="80dp"/>
 
         <TextView
             android:id="@+id/fullday_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="total fullday"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@android:color/holo_green_light"
             android:textSize="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"/>
@@ -116,14 +143,14 @@
             android:text="Half Day :"
             android:textSize="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="90dp"/>
+            android:layout_marginLeft="80dp"/>
 
         <TextView
             android:id="@+id/halfday_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="total halfday"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@android:color/holo_green_light"
             android:textSize="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"/>
@@ -133,8 +160,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Transfer                 :"
+        android:text="Masukkan Nominal Transfer"
         android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"/>
@@ -144,7 +172,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Masukkan Nominal transfer"
+        android:hint=" Nominal transfer"
         android:textSize="16dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="16dp"/>
@@ -176,7 +204,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Perhitungan Gaji  :"
+        android:text="Perhitungan Gaji"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:layout_marginLeft="20dp"/>
@@ -188,7 +217,7 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"/>
+        android:layout_marginLeft="35dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -203,7 +232,7 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:layout_marginTop="4dp"
-            android:layout_marginLeft="58dp"/>
+            android:layout_marginLeft="54dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -264,7 +293,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="4dp"
             android:text="="
             android:textColor="@color/black"
@@ -305,7 +334,7 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="54dp"/>
 
         <TextView
             android:id="@+id/txt_gabulPegawai"
@@ -326,7 +355,41 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"/>
+        android:layout_marginLeft="35dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Gaji"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="54dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="35dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nominal transfer"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="35dp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -341,26 +404,42 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="58dp"/>
+            android:layout_marginLeft="54dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp"/>
+
+            <TextView
+                android:id="@+id/txt_nominalTransfer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp. 0"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            android:textColor="@color/black"
+            android:text="GrandTotal"
             android:textSize="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="4dp"/>
-
-        <TextView
-            android:id="@+id/txt_nominalTransfer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="nominal transfer"
             android:textColor="@color/black"
-            android:textSize="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="54dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -369,17 +448,17 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/txt_totalAbsensi3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rp. 0"
-            android:textColor="@color/black"
+            android:textColor="@android:color/holo_red_light"
             android:textSize="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
 
