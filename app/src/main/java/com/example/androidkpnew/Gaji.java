@@ -12,14 +12,14 @@ public class Gaji implements Serializable {
     private String namaPegawai;
     private String rolePegawai;
     private int nomorRekening;
-    private int jumlahAbsen;
+    private Double jumlahAbsen;
     private int nilaiTunai;
     private int nilaiTransfer;
     private int totalGaji;
 
     public Gaji(){}
 
-    public Gaji(String tanggalBuat,  String namaPegawai, String rolePegawai, int nomorRekening, int jumlahAbsen, int nilaiTunai, int nilaiTransfer, int totalGaji) {
+    public Gaji(String tanggalBuat,  String namaPegawai, String rolePegawai, int nomorRekening, Double jumlahAbsen, int nilaiTunai, int nilaiTransfer, int totalGaji) {
         this.tanggalBuat = tanggalBuat;
         this.namaPegawai = namaPegawai;
         this.rolePegawai = rolePegawai;
@@ -70,11 +70,11 @@ public class Gaji implements Serializable {
         this.nomorRekening = nomorRekening;
     }
 
-    public int getJumlahAbsen() {
+    public Double getJumlahAbsen() {
         return jumlahAbsen;
     }
 
-    public void setJumlahAbsen(int jumlahAbsen) {
+    public void setJumlahAbsen(Double jumlahAbsen) {
         this.jumlahAbsen = jumlahAbsen;
     }
 

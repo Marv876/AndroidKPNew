@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -95,6 +96,7 @@ public class BuatGajiPegawai extends AppCompatActivity {
         btnCreate = findViewById(R.id.buatData_btn);
 
         etNominalTf.addTextChangedListener(onTextChangedListener());
+
         Absen abs_edit = (Absen)getIntent().getSerializableExtra("ADD");
         Employee emp_edit = (Employee) getIntent().getSerializableExtra("ADD2");
         ArrayList<String> half = (ArrayList<String>) getIntent().getSerializableExtra("HALF");
@@ -102,6 +104,7 @@ public class BuatGajiPegawai extends AppCompatActivity {
         int posisiSkrng = (Integer) getIntent().getSerializableExtra("POSITION");
         hitung = (Double.valueOf(half.get(posisiSkrng))/2.0)+Double.valueOf(full.get(posisiSkrng));
         databaseReference = FirebaseDatabase.getInstance().getReference("Employee");
+
         if(abs_edit != null){
             txtNamaPegawai.setText(abs_edit.getnamaPegawai());
             txtRolePegawai.setText(abs_edit.getrolePegawai());
@@ -233,14 +236,16 @@ public class BuatGajiPegawai extends AppCompatActivity {
             if(etNominalTf.getText().toString().matches("")){
                 Toast.makeText(this, "Isi Nominal transfernya!", Toast.LENGTH_SHORT).show();
             }else{
-                Log.d("isi edittext", " : "+etNominalTf.getText().toString());
-//                DAOGaji konekDB = new DAOGaji();
-//                Gaji gaji = new Gaji();
-//                konekDB.add(gaji).addOnSuccessListener(suc -> {
-//                    Toast.makeText(this,"Telah Terinput", Toast.LENGTH_LONG).show();
-//                }).addOnFailureListener(er -> {
-//                    Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
-//                });
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String tglSekarang = formatter.format(c.getTime());
+                DAOGaji konekDB = new DAOGaji();
+                Gaji gaji = new Gaji(tglSekarang, txtNamaPegawai.getText().toString(), txtRolePegawai.getText().toString(), Integer.parseInt(txtNorekPegawai.getText().toString()), hitung, (simpanhabishitung-getnominal), getnominal, ((int)(gapo*hitung)+simpanGamin+simpanGabul));
+                konekDB.add(gaji).addOnSuccessListener(suc -> {
+                    Toast.makeText(this,"Data Gaji Terinput", Toast.LENGTH_LONG).show();
+                }).addOnFailureListener(er -> {
+                    Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
+                });
                 finish();
             }
         });

@@ -12,7 +12,7 @@ public class DAOGaji {
     public DAOGaji()
     {
         FirebaseDatabase db =FirebaseDatabase.getInstance();
-        databaseReference = db.getReference(Absen.class.getSimpleName());
+        databaseReference = db.getReference(Gaji.class.getSimpleName());
     }
     public Task<Void> add(Gaji gaji)
     {
