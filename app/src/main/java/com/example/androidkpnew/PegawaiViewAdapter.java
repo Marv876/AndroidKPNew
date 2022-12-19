@@ -122,26 +122,6 @@ public class PegawaiViewAdapter extends RecyclerView.Adapter<PegawaiViewAdapter.
             gabulPegawai = itemView.findViewById(R.id.list_gajiBulanan_tv);
             txtOption = itemView.findViewById(R.id.option_txt);
 
-//            itemView.setOnClickListener(this);
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.d("OUTPUT", "onClick: data yang keluar adalah " + namaPegawai.getText());
-//                    Intent myIntent = new Intent(view.getContext(), UbahDataPegawai.class);
-//                    myIntent.putExtra("nama", namaPegawai.getText());
-//                    myIntent.putExtra("role", rolePegawai.getText());
-//                    myIntent.putExtra("norek", norekPegawai.getText());
-//                    myIntent.putExtra("gapo", gaminPegawai.getText());
-//                    myIntent.putExtra("gamin", gaminPegawai.getText());
-//                    myIntent.putExtra("gabul", gabulPegawai.getText());
-//                    try {
-//                        view.getContext().startActivity(myIntent);
-//                    } catch (ActivityNotFoundException er) {
-//                        // Define what your app should do if no activity can handle the intent.
-////                        Toast.makeText(this, ""+er.getMessage(), Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            });
         }
 
         @Override

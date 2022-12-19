@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HistoryActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="History Pegawai"
+        android:fontFamily="@font/oswalddemibold"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginBottom="15dp"
+        android:textSize="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tanggalRange_txt"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Pilih Tanggal "
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/calendar_btn"
+            android:layout_width="61dp"
+            android:layout_height="57dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:backgroundTint="@color/white"
+            android:drawableRight="@drawable/calendar" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/simpleSearchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tipid"
+        app:queryHint="Cari Nama/Nomor Rekening"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:layout_marginRight="40dp"
+        android:animateLayoutChanges="true"
+        android:layoutDirection="rtl"
+        android:supportsRtl="true" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/data_history"
+        android:layout_width="match_parent"
+        android:layout_height="579dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>

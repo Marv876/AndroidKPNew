@@ -54,6 +54,17 @@
             android:backgroundTint="#ffd700"
             android:text="Anggota"
             android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/history_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#ffd700"
+            android:text="History"
+            android:textColor="@color/black" />
+
     </LinearLayout>
 
     <TextView

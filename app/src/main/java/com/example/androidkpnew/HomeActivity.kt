@@ -13,6 +13,7 @@ class HomeActivity : AppCompatActivity() {
         var btnAbsensi : Button = findViewById(R.id.absensi_btn)
         var btnGaji : Button = findViewById(R.id.gaji_btn)
         var btnAnggota : Button = findViewById(R.id.anggota_btn)
+        var btnHistory : Button = findViewById(R.id.history_btn)
 
         btnAbsensi.setOnClickListener{
             val intent = Intent(this, AbsensiActivity::class.java)
@@ -26,6 +27,11 @@ class HomeActivity : AppCompatActivity() {
 
         btnAnggota.setOnClickListener{
             val intent = Intent(this, DaftarAnggotaActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnHistory.setOnClickListener{
+            val intent = Intent(this, HistoryActivity::class.java)
             startActivity(intent)
         }
 
