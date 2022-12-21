@@ -53,9 +53,9 @@
         android:id="@+id/checkBox_centangSemua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Centang Semua"
+        android:text="RESET"
         android:textStyle="bold"
-        android:layout_marginLeft="250dp" />
+        android:layout_marginLeft="310dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/data_absensi"
