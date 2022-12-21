@@ -48,21 +48,21 @@ public class DaftarAnggotaActivity extends AppCompatActivity {
 
         DAOEmployee konekDB = new DAOEmployee();
         btnSubmitpegawai.setOnClickListener(view -> {
-            if(etNamapegawai.getText().toString() == ""){
-                Toast.makeText(this,"Isi Nama Pegawai", Toast.LENGTH_LONG).show();
+            if(etNamapegawai.getText().toString().equals("")){
+                Toast.makeText(this,"Isi Nama Pegawai", Toast.LENGTH_SHORT).show();
             }
-            else if(etNorekening.getText().toString() == ""){
-                Toast.makeText(this,"Isi Nomor Rekening pegawai", Toast.LENGTH_LONG).show();
+            else if(etNorekening.getText().toString().equals("")){
+                Toast.makeText(this,"Isi Nomor Rekening pegawai", Toast.LENGTH_SHORT).show();
             }
-            else if(etGajipokok.getText().toString() == ""){
-                Toast.makeText(this,"Isi Gaji Pokok Pegawai", Toast.LENGTH_LONG).show();
+            else if(etGajipokok.getText().toString().equals("")){
+                Toast.makeText(this,"Isi Gaji Pokok Pegawai", Toast.LENGTH_SHORT).show();
             }
-            else if(etGajimingguan.getText().toString() == ""){
-                Toast.makeText(this,"Isi Gaji Mingguan Pegawai", Toast.LENGTH_LONG).show();
+            else if(etGajimingguan.getText().toString().equals("")){
+                Toast.makeText(this,"Isi Gaji Mingguan Pegawai", Toast.LENGTH_SHORT).show();
             }
-            else if(etGajibulanan.getText().toString() == ""){
-                Toast.makeText(this,"Isi Gaji Bulanan Pegawai", Toast.LENGTH_LONG).show();
-            }else{
+            else if(etGajibulanan.getText().toString().equals("")){
+                Toast.makeText(this,"Isi Gaji Bulanan Pegawai", Toast.LENGTH_SHORT).show();
+            } else{
                 Log.d("regex", ": "+etGajipokok.getText().toString().replaceAll(",",""));
                 Employee emp = new Employee(etNamapegawai.getText().toString(),spinnerRolepegawai.getSelectedItem().toString(), Integer.parseInt(etNorekening.getText().toString()), Integer.parseInt(etGajipokok.getText().toString().replaceAll(",","")), Integer.parseInt(etGajimingguan.getText().toString().replaceAll(",","")), Integer.parseInt(etGajibulanan.getText().toString().replaceAll(",","")));
                 konekDB.add(emp).addOnSuccessListener(suc -> {

@@ -114,6 +114,7 @@
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:gravity="center_horizontal"
                 android:text="&#8942;"
                 android:textColor="@color/black"
                 android:textSize="20dp" />

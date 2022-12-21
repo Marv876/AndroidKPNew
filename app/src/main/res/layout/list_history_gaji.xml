@@ -7,12 +7,12 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="370dp"
+        android:layout_width="376dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/tipid">
+        android:background="@drawable/tipid"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -29,8 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Tanggal"
-                android:textSize="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/list_nama_tv"
@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Nama Anggota"
-                android:textSize="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/list_role_tv"
@@ -47,8 +47,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="divisi"
-                android:textSize="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/list_norek_tv"
@@ -56,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Nomor Rekening"
-                android:textSize="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/list_jumlahAbsensi_tv"
@@ -65,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Jumlah Total Absen"
-                android:textSize="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/list_nominaltransfer_tv"
@@ -74,8 +74,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Total Transfer"
-                android:textSize="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/list_totalcash_tv"
@@ -83,8 +83,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Total Tunai"
-                android:textSize="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/list_grandtotal_tv"
@@ -92,17 +92,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Grand Total"
-                android:textSize="16dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginRight="35dp"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:orientation="vertical">
 
             <TextView
@@ -110,6 +110,7 @@
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:gravity="center_horizontal"
                 android:text="&#8942;"
                 android:textColor="@color/black"
                 android:textSize="20dp" />

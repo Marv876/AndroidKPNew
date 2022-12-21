@@ -30,7 +30,8 @@ public class HistoryActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     HistoryViewAdapter historyAdapter;
-    ArrayList<Gaji> listGaji;
+    ArrayList<Gaji> listGaji = new ArrayList<>();
+    Boolean start = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +60,28 @@ public class HistoryActivity extends AppCompatActivity {
                         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                         dateStringStart = formatter.format(new Date(startDate));
                         dateStringEnd = formatter.format(new Date(endDate));
+                        Query query = databaseReference.orderByChild("tanggalBuat").startAt(dateStringStart).endAt(dateStringEnd);
+                        query.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                showListener(snapshot);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Log.e(error.getMessage(), "onCancelled: ", error.toException());
+                            }
+                        });
                     }
                 });
             }
         });
 
-        listGaji = new ArrayList<>();
-        historyAdapter = new HistoryViewAdapter(this, listGaji);
-        historyAdapter.notifyDataSetChanged();
+        if(start == false){
+            listGaji = new ArrayList<>();
+            historyAdapter = new HistoryViewAdapter(this, listGaji);
+            historyAdapter.notifyDataSetChanged();
+        }
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -88,5 +103,17 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showListener(DataSnapshot snapshot) {
+        listGaji.clear();
+        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+            Gaji gaji = dataSnapshot.getValue(Gaji.class);
+            gaji.setKey(dataSnapshot.getKey());
+            listGaji.add(gaji);
+        }
+        start = true;
+        historyAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(historyAdapter);
     }
 }

@@ -72,8 +72,8 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
         Absen abs = list.get(position);
         Employee pegawai = listPegawai.get(position);
 //        holder.tanggal.setText("Tanggal : "+abs.getTanggal());
-        holder.namaPegawai.setText("Nama : " +abs.getnamaPegawai());
-        holder.rolePegawai.setText("Role : " +abs.getrolePegawai());
+        holder.namaPegawai.setText("Nama                    : " +abs.getnamaPegawai());
+        holder.rolePegawai.setText("Role                       : " +abs.getrolePegawai());
         holder.norekPegawai.setText("Nomor Rekening : " +abs.getnomorRekening());
         size = masukHalf.size();
         Double pemecah;
@@ -87,7 +87,7 @@ public class GajiViewAdapter extends RecyclerView.Adapter<GajiViewAdapter.MyView
             jumlahAbsen = (Double) masukFull.get(ctr) + pemecah;
             ctr++;
         }
-        holder.jumlahAbsensi.setText("Jumlah Absen : "+jumlahAbsen+" hari");
+        holder.jumlahAbsensi.setText("Jumlah Absen     : "+jumlahAbsen+" hari");
 
         listenerGaji.addToList(abs.getnamaPegawai(), abs.getrolePegawai(), abs.getnomorRekening(), jumlahAbsen);
 

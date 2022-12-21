@@ -30,9 +30,9 @@ public class HistoryViewAdapter extends RecyclerView.Adapter<HistoryViewAdapter.
 
     @NonNull
     @Override
-    public HistoryViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.list_history_gaji , parent, false);
-        return new HistoryViewAdapter.MyViewHolder(v);
+        return new MyViewHolder(v);
     }
 
     @Override
@@ -45,18 +45,18 @@ public class HistoryViewAdapter extends RecyclerView.Adapter<HistoryViewAdapter.
         kursIndonesia.setDecimalFormatSymbols(formatRp);
 
         Gaji gaji = listGaji.get(position);
-        holder.tanggal.setText("Tanggal : " + gaji.getTanggalBuat());
-        holder.namaPegawai.setText("Nama : " + gaji.getNamaPegawai());
-        holder.rolePegawai.setText("Role : " +gaji.getRolePegawai());
-        holder.norekPegawai.setText("Nomor Rekening : " +gaji.getNomorRekening());
-        holder.totalAbsen.setText("Jumlah Absen : " +gaji.getJumlahAbsen());
-        holder.totalTransfer.setText("Nominal Transfer : " +gaji.getNilaiTransfer());
-        holder.totalCash.setText("Nominal Cash : " +gaji.getNilaiTunai());
-        holder.grandTotal.setText("Granf Total : " +gaji.getTotalGaji());
+        holder.tanggal.setText("Tanggal                  : " + gaji.getTanggalBuat());
+        holder.namaPegawai.setText("Nama                     : " + gaji.getNamaPegawai());
+        holder.rolePegawai.setText("Role                        : " +gaji.getRolePegawai());
+        holder.norekPegawai.setText("Nomor Rekening  : " +gaji.getNomorRekening());
+        holder.totalAbsen.setText("Jumlah Absen      : " +gaji.getJumlahAbsen());
+        holder.totalTransfer.setText("Nominal Transfer : " + kursIndonesia.format(gaji.getNilaiTransfer()));
+        holder.totalCash.setText("Nominal Cash       : " +kursIndonesia.format(gaji.getNilaiTunai()));
+        holder.grandTotal.setText("Granf Total            : " +kursIndonesia.format(gaji.getTotalGaji()));
 
         holder.txtOption3.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(context, holder.txtOption3);
-            popupMenu.inflate(R.menu.option_menu);
+            popupMenu.inflate(R.menu.option_menu3);
             popupMenu.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()){
                     case R.id.menu_hapus:

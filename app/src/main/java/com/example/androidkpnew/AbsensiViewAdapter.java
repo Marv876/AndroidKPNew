@@ -62,7 +62,7 @@ public class AbsensiViewAdapter extends RecyclerView.Adapter<AbsensiViewAdapter.
         Employee pegawai = listEMP.get(position);
 
         holder.namaPegawai.setText("Nama : " + pegawai.getNamaPegawai());
-        holder.rolePegawai.setText("Role : " +pegawai.getRolePegawai());
+        holder.rolePegawai.setText("Role    : " +pegawai.getRolePegawai());
         holder.norekening.setText("Norek : " +pegawai.getnomorRekening());
 
         holder.halfDay.setOnCheckedChangeListener(null);
