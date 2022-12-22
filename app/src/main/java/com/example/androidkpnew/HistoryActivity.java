@@ -2,6 +2,7 @@ package com.example.androidkpnew;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,12 +41,19 @@ public class HistoryActivity extends AppCompatActivity {
 
         final TextView tanggalRange_txt = findViewById(R.id.tanggalRange_txt);
         final Button kalender = findViewById(R.id.calendar_btn);
+        final SearchView cariData =  findViewById(R.id.simpleSearchView);
 
         recyclerView = findViewById(R.id.data_history);
         databaseReference = FirebaseDatabase.getInstance().getReference("Gaji");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setSelection(Pair.create(MaterialDatePicker.thisMonthInUtcMilliseconds(), MaterialDatePicker.todayInUtcMilliseconds())).build();
+
+        if(start == false){
+            listGaji = new ArrayList<>();
+            historyAdapter = new HistoryViewAdapter(this, listGaji);
+            historyAdapter.notifyDataSetChanged();
+        }
 
         kalender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,11 +85,32 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
-        if(start == false){
-            listGaji = new ArrayList<>();
-            historyAdapter = new HistoryViewAdapter(this, listGaji);
-            historyAdapter.notifyDataSetChanged();
-        }
+        cariData.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Query query = databaseReference.orderByChild("namaPegawai").startAt(newText).endAt(newText+"\uf8ff");
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot getSnapshot: snapshot.getChildren()) {
+                            showListener(snapshot);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e(error.getMessage(), "onCancelled: ", error.toException());
+                    }
+                });
+
+                return false;
+            }
+        });
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
