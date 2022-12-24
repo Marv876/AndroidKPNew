@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,6 +53,7 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
     Boolean sdhPilihTgl = false;
     String getNama, getRole, getHalf, getFull;
     int getNorek;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,34 +124,49 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
                     reset.setChecked(false);
                     Toast.makeText(this, "Pilih tanggalnya dulu", Toast.LENGTH_SHORT).show();
                 }else{
-                    DatabaseReference database = FirebaseDatabase.getInstance().getReference("Absen");
-                    Query query = database.orderByChild("tanggal").equalTo(tglSekarang);
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot getSnapshot: dataSnapshot.getChildren()) {
-                                getSnapshot.getRef().removeValue();
-                            }
-                            Toast.makeText(AbsensiActivity.this, "Data sudah dihapus, silahkan isi ulang absensi", Toast.LENGTH_LONG).show();
-                        }
+                    builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Peringatan!")
+                            .setMessage("yakin ingin menghapus semua data ditanggal ini?")
+                            .setCancelable(true)
+                            .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    DatabaseReference database = FirebaseDatabase.getInstance().getReference("Absen");
+                                    Query query = database.orderByChild("tanggal").equalTo(tglSekarang);
+                                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            for (DataSnapshot getSnapshot: dataSnapshot.getChildren()) {
+                                                getSnapshot.getRef().removeValue();
+                                            }
+                                            Toast.makeText(AbsensiActivity.this, "Data sudah dihapus, silahkan isi ulang absensi", Toast.LENGTH_LONG).show();
+                                        }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.e("error database : ", databaseError.toException().toString(), databaseError.toException());
-                        }
-                    });
-                    reset.setChecked(false);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            finish();
-                            startActivity(getIntent());
-                        }
-                    }, 2000);
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            Log.e("error database : ", databaseError.toException().toString(), databaseError.toException());
+                                        }
+                                    });
+                                    reset.setChecked(false);
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            finish();
+                                            startActivity(getIntent());
+                                        }
+                                    }, 2000);
 
+                                }
+                            })
+                            .setNegativeButton("jangan hapus", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                    reset.setChecked(false);
+                                }
+                            }).show();
                 }
             }
-
         });
 
     }
@@ -190,17 +207,6 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
         }else{
             DAOAbsen konekDB = new DAOAbsen();
             Log.d("array", "total isi array: "+abs.size());
-//        Log.d("Output key all", " : "+abs.isEmpty());
-            if (abs.isEmpty()){
-                Absen absBaru = new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull);
-                abs.add(new Absen(tglSekarang, getNama, getRole, getNorek, getHalf, getFull));
-                konekDB.add(absBaru).addOnSuccessListener(suc -> {
-                    Toast.makeText(this,"Absen Telah diCatat!", Toast.LENGTH_SHORT).show();
-                }).addOnFailureListener(er -> {
-                    Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
-                });
-                Log.d("array", "total isi array: "+abs.size());
-            }else{
                 Boolean cek = true;
                 Boolean berhasil = false;
                 Log.d("array", "total isi array: "+abs.size());
@@ -237,7 +243,6 @@ public class AbsensiActivity extends AppCompatActivity implements DatePickerDial
                         Toast.makeText(this,""+er.getMessage(), Toast.LENGTH_LONG).show();
                     });
                 }
-            }
         }
 
     }

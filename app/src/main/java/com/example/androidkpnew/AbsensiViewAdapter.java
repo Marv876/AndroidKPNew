@@ -74,7 +74,7 @@ public class AbsensiViewAdapter extends RecyclerView.Adapter<AbsensiViewAdapter.
                     if(holder.fullDay.isChecked()){
                         holder.fullDay.setChecked(false);
                         masukFull = "0";
-                        Toast.makeText(context, "tidak bisa pilih halfday setelah fullday", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, "tidak bisa pilih halfday setelah fullday", Toast.LENGTH_LONG).show();
                     }
                     holder.halfDay.setChecked(true);
                     getNama = pegawai.getNamaPegawai();
@@ -101,7 +101,7 @@ public class AbsensiViewAdapter extends RecyclerView.Adapter<AbsensiViewAdapter.
                     if(holder.halfDay.isChecked()){
                         holder.halfDay.setChecked(false);
                         masukHalf = "0";
-                        Toast.makeText(context, "tidak bisa pilih fullday setelah halfday", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, "tidak bisa pilih fullday setelah halfday", Toast.LENGTH_LONG).show();
                     }
                     getNama = pegawai.getNamaPegawai();
                     getRole = pegawai.getRolePegawai();
